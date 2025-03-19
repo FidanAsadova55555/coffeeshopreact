@@ -5,6 +5,7 @@ import { Router } from './router';
 const App = () => {
   return (
     <>
+
         <RouterProvider router={Router} />
 
     </>

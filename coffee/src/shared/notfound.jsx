@@ -21,7 +21,7 @@ export const DataNotFoundContainer = () => {
                 height='40%'
                 width='40%'
             />
-            <h1 className='font-semibold font-poppins text-gray-600'>Data Not Found...</h1>
+            <h1 className='font-semibold font-poppins text-[#B8784E]'>Coffee Not Found...</h1>
         </div>
     )
 }

@@ -1,11 +1,11 @@
 import React from 'react'
 import Lottie from 'react-lottie';
-import animationData from '@/assets/NotFound.json';
+import animationData from '@/assets/Loading.json';
 
 
 
 
-export const DataNotFoundContainer = () => {
+export const Loading = () => {
     const defaultOptions = {
         loop: true,
         autoplay: true,
@@ -21,8 +21,7 @@ export const DataNotFoundContainer = () => {
                 height='40%'
                 width='40%'
             />
-            <h1 className='font-semibold font-poppins text-[#B8784E]'>Oops! This page's coffee break got a little messy...
- 
+            <h1 className='font-semibold font-poppins text-[#B8784E]'>A little patience, just like slow brew...
             </h1>
         </div>
     )

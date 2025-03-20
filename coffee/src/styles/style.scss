@@ -3,8 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 @font-face {
-  font-family: 'Sofia Pro';
+  font-family: 'Sofia Pro Medium';
   src: url('/fonts/SofiaProMedium.woff2') format('woff2'),
        url('/fonts/SofiaProMedium.woff') format('woff');
-  
 }
+@font-face {
+  font-family: 'Sofia Pro Regular';
+  src: url('/fonts/SofiaProRegular.woff2') format('woff2'),
+       url('/fonts/SofiaProRegular.woff') format('woff');
+}
+
+@import "remixicon/fonts/remixicon.css";

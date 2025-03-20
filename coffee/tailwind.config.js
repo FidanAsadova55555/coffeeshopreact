@@ -7,15 +7,16 @@ module.exports = {
         caudex:["Caudex",  "sans-serif"],
         archivo: ["Archivo", "sans-serif"],
         worksans: ["Work Sans", "sans-serif"],
-        sofia: ['Sofia Pro', 'sans-serif'],
+        sofia: ['Sofia Pro Medium', 'sans-serif'],
+        sofiaRegular: ['Sofia Pro Regular', 'sans-serif'],
 
       },
       colors:{
         textcolor:"#111111",
-        bordercolor:"#e5e5e5",
-        desccolor:"#555555",
-        footercolor:"#d3d3d3",
-        footerbg:"#383e56"
+        bordercolor:"#ededed",
+        bordercolor:"#ced4da",
+        intext:"#495057",
+        coffee:"#b8784e"
       },
        screens: {
         'xs': '320px', 

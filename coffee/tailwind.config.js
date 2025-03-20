@@ -14,9 +14,10 @@ module.exports = {
       colors:{
         textcolor:"#111111",
         bordercolor:"#ededed",
-        bordercolor:"#ced4da",
+        footerc:"#f8f8f8",
         intext:"#495057",
-        coffee:"#b8784e"
+        coffee:"#b8784e",
+        footerborder:"#dddddd"
       },
        screens: {
         'xs': '320px', 

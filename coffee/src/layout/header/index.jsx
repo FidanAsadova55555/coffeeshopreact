@@ -16,10 +16,10 @@ const Header = () => {
   
     const menuItems = [
         { name: "home", path: "/" },
-        { name: "shop", path: "/shop" },
+        { name: "shop", path: "/products" },
         { name: "featured", path: "/featured" },
         { name: "pages", path: "/pages" },
-        { name: "blogs", path: "/blog" },
+        { name: "blogs", path: "/news" },
 
       ];
       useEffect(() => {
@@ -77,7 +77,10 @@ const Header = () => {
             )}
     </div>
     <div className="lg:col-span-2 col-span-6 px-[15px]">
+    <div className="mx-auto lg:w-[175px] w-[125px] lg:h-[49px] h-[35px] overflow-hidden">
+
 <Logo/>
+</div>
     </div>
     <div className="lg:col-span-5 col-span-3 px-[15px]">
    

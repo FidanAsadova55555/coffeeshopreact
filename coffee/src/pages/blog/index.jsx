@@ -1,10 +1,11 @@
 import React from 'react'
-
+import JustBreadcrumb from '@/shared/breadcrumb'
 const Blog = () => {
   return (
-    <div>Blog
-      
-    </div>
+    <>
+   
+    <JustBreadcrumb/>
+    </>
   )
 }
 

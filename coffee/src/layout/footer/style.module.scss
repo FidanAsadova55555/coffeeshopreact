@@ -1,0 +1,8 @@
+.footerclmn::after{
+    content: "";
+    display: block;
+    height: 1px;
+    width: 30px;
+    margin-top: 20px;
+    background-color: #000;
+}

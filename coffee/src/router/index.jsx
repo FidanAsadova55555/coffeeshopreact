@@ -33,19 +33,19 @@ export const Router = createBrowserRouter([
                 element: <Home />,
             },
             {
-                path: "shop",
+                path: "products",
                 element: <Products/>,
             },
             {
-                path: "shop/:id",
+                path: "products/:id",
                 element: <ProductDetail />,
             },
             {
-                path: "blog",
+                path: "news",
                 element: <Blog />,
             },
             {
-                path: "blog/:id",
+                path: "news/:id",
                 element: <BlogDetail />,
             },
         ],

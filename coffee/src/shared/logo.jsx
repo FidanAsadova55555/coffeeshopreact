@@ -3,7 +3,6 @@ import { Link } from "react-router";
 
 const Logo = () => {
   return (
-  <div className="mx-auto lg:w-[175px] w-[125px] lg:h-[49px] h-[35px] overflow-hidden">
     <div className="w-full h-full object-contain">
       <Link to="/" className="block" aria-label="Monfee Home">
         <svg
@@ -99,7 +98,6 @@ const Logo = () => {
           </text>
         </svg>
       </Link>
-    </div>
     </div>
   );
 };

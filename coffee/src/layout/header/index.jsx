@@ -7,10 +7,13 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [MenuOpen, setMenuOpen] = useState(true);
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1200); 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
+  const [isLoginOpen, setIsLoginOpen] = useState(false); 
+  
     const menuItems = [
         { name: "home", path: "/" },
         { name: "shop", path: "/shop" },
@@ -151,23 +154,31 @@ ${isMenuOpen ? "translate-x-0" : "-translate-x-full"} transition-transform durat
 
   <div className='flex items-center w-full h-[55px] uppercase border-b border-bordercolor font-sofia'>
 
-    <div className='w-[50%] flex justify-center items-center text-[14px] text-white bg-black h-[55px] gap-[8px]'>
-      <span className={`${styles.smmenu} cursor-pointer lg:hidden`}>
-       <span></span>
-       <span></span>
-       <span></span>
+    <div className={`  ${MenuOpen ? "text-white bg-black" : "text-black bg-white"} transition-all ease-in-out duration-200 w-[50%] flex justify-center items-center text-[14px]  h-[55px] gap-[8px]`}onClick={() => {
+  setMenuOpen(true);
+  setIsLoginOpen(false);
+}}>
+     <span className={`${styles.smmenu} lg:hidden cursor-pointer ${MenuOpen ? "text-white" : "text-black"}`}>
+  <span></span>
+  <span></span>
+  <span></span>
+</span>
 
-      </span>
       <h1 className='text-[14px]'>Menu</h1>
     </div>
 
-    <div className='w-[50%] flex justify-center items-center text-[14px] text-black bg-white h-[55px] gap-[8px]'>
+    <div className={`  ${isLoginOpen ? "text-white bg-black" : "text-black bg-white"} transition-all ease-in-out duration-200  w-[50%] flex justify-center items-center text-[14px]  h-[55px] gap-[8px]`} onClick={() => {
+  setIsLoginOpen(true);
+  setMenuOpen(false);
+}}
+>
       <span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 400 400"
-          className="fill-current h-[16px] w-[16px]  text-black"
-        >
+      <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 400 400"
+  className={`fill-current h-[16px] w-[16px] ${isLoginOpen ? "text-white" : "text-black"}`}
+>
+
           <g transform="matrix(1.3333333,0,0,-1.3333333,0,400)">
             <g transform="scale(0.1)" id="g12">
               <path d="m 1506.87,2587.11 c -225.04,0 -408.14,-183.08 -408.14,-408.11 0,-225.06 183.1,-408.13 408.14,-408.13 225.02,0 408.13,183.07 408.13,408.13 0,225.03 -183.11,408.11 -408.13,408.11 z m 0,-1038.56 c -347.64,0 -630.432,282.79 -630.432,630.45 0,347.63 282.792,630.43 630.432,630.43 347.63,0 630.42,-282.8 630.42,-630.43 0,-347.66 -282.79,-630.45 -630.42,-630.45 v 0"></path>
@@ -181,7 +192,8 @@ ${isMenuOpen ? "translate-x-0" : "-translate-x-full"} transition-transform durat
 
   </div>
   <div className="flex-grow overflow-y-auto max-h-[calc(100vh-105px)]">
-  {/*this for  menu*/} <div className={`flex flex-col justify-center  text-[16px] items-start text-black`}>
+   {MenuOpen && (
+  <div className={`flex flex-col justify-center  text-[16px] items-start text-black`}>
     {menuItems.map((item) => (
       <div key={item.name} className='border-b w-full flex justify-between items-center border-bordercolor'>
         <Link className='p-[15px] font-sofia uppercase leading-[1.5rem] text-left' to={item.path}>
@@ -194,8 +206,9 @@ ${isMenuOpen ? "translate-x-0" : "-translate-x-full"} transition-transform durat
         </div>
       </div>
     ))}
-  </div> 
-  {/*this for  login*/}<div className='py-[30px] px-[15px]'>
+  </div> )}
+{isLoginOpen && (
+<div className='py-[30px] px-[15px]'>
 <div className='flex flex-col justify-center text-[13px] items-center mt-[16px] font-sofiaRegular '>
   <div className='mb-[16px] w-full text-intext  h-[45px] border border-bordercolor'>
   <input type="text" placeholder='Email address'  className=' py-[6px] px-[12px] h-full w-full outline-none border-none bg-transparent'/>
@@ -206,7 +219,7 @@ ${isMenuOpen ? "translate-x-0" : "-translate-x-full"} transition-transform durat
   <div className='text-[#555] text-left w-full py-[8px]'>
 Forgot your password?
   </div>
-  <button className='p-[11px] mb-[10px] text-white w-full tracking-[0.2em] uppercase bg-black'>
+  <button className='p-[11px] mt-[10px] text-white w-full tracking-[0.2em] uppercase bg-black'>
 log in
   </button>
   <div className='w-full'>
@@ -219,9 +232,12 @@ log in
 </div>
 
 </div>
+  </div>)}
   </div>
-  </div>
-  <div className='flex justify-center items-center w-full  text-center bg-coffee text-white fixed bottom-0 left-0 ' onClick={() => setIsMenuOpen(false)}>
+  <div className='flex justify-center items-center w-full  text-center bg-coffee text-white fixed bottom-0 left-0 ' onClick={() => {
+  setIsMenuOpen(false);
+}}
+>
           <FontAwesomeIcon icon={faXmark} className="text-[12px] mr-[16px]" />
 
   <div className='tracking-[1.5px] font-sofia uppercase leading-[50px] text-[12px] 0'>

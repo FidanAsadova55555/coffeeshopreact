@@ -20,6 +20,7 @@ module.exports = {
         coffee:"#b8784e",
         footerborder:"#dddddd",
         old:"#979797",
+        border:"#eaeaea",
         myred:"#ed1f1f",
         title:"#aaa",
         newstext:"#212529"

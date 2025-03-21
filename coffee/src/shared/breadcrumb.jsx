@@ -16,7 +16,7 @@ const JustBreadcrumb = () => {
 
   return (
     <div
-      className={`font-sofiaRegular   text-center flex flex-col justify-center items-center w-full ${isWhiteText ? "py-[140px]" : "pt-[150px] pb-[130px]"}`}
+      className={`font-sofia   text-center flex flex-col justify-center items-center w-full ${isWhiteText ? "py-[140px]" : "pt-[150px] pb-[130px]"}`}
       style={{
         backgroundImage: `url(${currentBg})`,
         backgroundSize: "cover",

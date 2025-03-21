@@ -1,5 +1,33 @@
 .blur{
     position: relative;
+  
+    .krujochki{
+  
+        display: flex;
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translate(-50%) translateY(15px);
+        transition: all .3s linear;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 999;
+        .circle{
+            margin: 0 7px;
+            transition: all ease-in-out 0.3s;
+            transform: scale(1.0);
+            border-radius: 50%;
+        border: 1px solid #f0f0f0;
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        background-color: #d2b48c;
+        &:hover{
+            transform: scale(1.2);
+
+        }
+        }
+    }
     &::after {
         position: absolute;
         content: "";
@@ -54,10 +82,83 @@ align-items: center;
         transform: translate(-50%) translateY(0);
         opacity: 1;
         visibility: visible;
+        
     }
+    &:hover .krujochki {
+        transform: translate(-50%) translateY(0);
+        transition-delay: 0.5s;
+        opacity: 1;
+        visibility: visible;
+      }
+      
 }
 .icon{
     color:black;
 transition: all ease-in-out 0.5s;
 font-size: 16px;
+}
+
+.tooltipWrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  
+    .tooltip {
+        z-index: 999; 
+        line-height: normal;
+      visibility: hidden;
+      width: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white !important; 
+      text-align: center;
+      padding: 15px;
+      visibility: visible !important;
+      opacity: 1 !important;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 110%; 
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+      white-space: nowrap;
+      font-size: 12px;
+  
+      &::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+      }
+    }
+  
+    &:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+  
+  
+  
+.sale{
+position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: .3em;
+  padding: 5px 12px;
+}
+
+@media (max-width: 768px) {
+    .blur{
+        .krujochki,.iconslist{
+            display: none;
+    
+        }
+    }
 }

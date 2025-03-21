@@ -3,9 +3,16 @@ import styles from "./style.module.scss"
 const NewsCard = () => {
   return (
     <div className="pt-[67px] mb-[30px] px-[15px] font-sofia">
-<div className={`${styles.news}  max-w-full overflow-hidden h-[446px]`}>
+<div className={`${styles.news} relative  max-w-full overflow-hidden h-[446px]`}>
  <img src="https://monfee-store-demo.myshopify.com/cdn/shop/articles/Blog3_1024x1024.jpg?v=1592032221
  " alt="" className='w-full h-full object-cover'/> 
+<div className="w-[76px] h-[76px] text-center rounded-full inline-block absolute py-[10px] px-[15px] bg-white top-[30px] left-[30px]">
+<div className={`${styles.day} text-[20px] font-medium font-sofia `}>
+04</div>
+<div className="text-[14px] font-medium font-sofia uppercase">
+may</div>
+
+</div>
 
 </div>
 <div>

@@ -2,11 +2,12 @@
 
     img{
         transform: scale(1.0);
+        transition:all ease-in-out 0.5s;
+
     }
     &:hover{
         img{
             transform: scale(1.1);
-            transition: 0.5s;
             opacity: 0.6;
         }
     }
@@ -39,3 +40,19 @@
             }
         }
 }
+.day {
+    position: relative;
+  
+    &::after {
+      content: "";
+      height: 1px;
+      width: 44px;
+      background-color: #c8c8c8;
+      position: absolute;
+      bottom: -1px;
+      left: 0; 
+      display: block;
+    }
+  }
+  
+  

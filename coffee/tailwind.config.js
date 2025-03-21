@@ -15,11 +15,14 @@ module.exports = {
         textcolor:"#111111",
         bordercolor:"#ededed",
         footerc:"#f8f8f8",
+        text:"#a8a8a8",
         intext:"#495057",
         coffee:"#b8784e",
         footerborder:"#dddddd",
         old:"#979797",
-        myred:"#ed1f1f"
+        myred:"#ed1f1f",
+        title:"#aaa",
+        newstext:"#212529"
       },
        screens: {
         'xs': '320px', 

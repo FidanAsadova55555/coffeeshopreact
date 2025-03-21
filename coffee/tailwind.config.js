@@ -17,7 +17,8 @@ module.exports = {
         footerc:"#f8f8f8",
         intext:"#495057",
         coffee:"#b8784e",
-        footerborder:"#dddddd"
+        footerborder:"#dddddd",
+        old:"#979797"
       },
        screens: {
         'xs': '320px', 

@@ -1,9 +1,19 @@
 import React from 'react'
+import { useLocation } from 'react-router';
+
 import styles from "./style.module.scss"
-const NewsCard = ({height}) => {
+
+const NewsCard = () => {
+  const location = useLocation();
+const isNewsPage = location.pathname === "/news";
+
   return (
-    <div className="pt-[67px] mb-[30px] px-[15px] font-sofia">
-<div className={`${styles.news} relative  max-w-full overflow-hidden `}   style={{ height }}
+<div
+  className={`${
+    isNewsPage ? "pt-[67px]" : "pt-[30px]"
+  } mb-[30px] px-[15px] font-sofia`}
+>
+<div className={`${styles.news} relative  max-w-full overflow-hidden ${isNewsPage ? "h-[446px]" :"h-[300px]"}`}   
 >
  <img src="https://monfee-store-demo.myshopify.com/cdn/shop/articles/Blog3_1024x1024.jpg?v=1592032221
  " alt="" className='w-full h-full object-cover'/> 

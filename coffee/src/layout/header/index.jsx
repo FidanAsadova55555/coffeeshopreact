@@ -4,7 +4,7 @@ import Logo from '@/shared/logo';
 import styles from "./style.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-
+import { useLocation } from 'react-router';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [MenuOpen, setMenuOpen] = useState(true);
@@ -45,11 +45,24 @@ const Header = () => {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
       }, []);
+        const location = useLocation();
+      const isHomePage = location.pathname === "/";
   return (
     <>
-<header  className={`lg:py-[25px] py-[15px] ${
-           isScrolled ? "fixed top-0 left-0 w-full bg-[#ffffffe6] shadow-[0_2px_5px_-2px_rgba(0,0,0,0.1)] transition-all ease-in-out 0.5s z-50" : "relative"
-        }`}>
+<header
+  className={`lg:py-[25px] py-[15px] transition-all ease-in-out duration-500 w-full ${
+    isHomePage
+      ? isScrolled
+        ? "bg-[#1a1a1ae6] sticky top-0 z-50 text-white"
+        : "bg-transparent absolute top-0 left-0 z-50 text-white"
+      : isScrolled
+      ? "bg-[#ffffffe6] fixed top-0 left-0 z-50 shadow-[0_2px_5px_-2px_rgba(0,0,0,0.1)] text-newstext"
+      : "relative text-newstext"
+  }`}
+>
+
+
+
 <div className='grid grid-cols-12 items-center'>
     <div className="lg:col-span-5 col-span-3 px-[15px]">
         <div className={`flex justify-start text-[17px] items-center ${isSmallScreen ? "hidden" : "flex"}`}>
@@ -90,7 +103,7 @@ const Header = () => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 400 400"
           
-          className=" lg:h-[24px] lg:w-[26px] h-[22px] w-[22px] fill-current text-black"
+          className=" lg:h-[24px] lg:w-[26px] h-[22px] w-[22px] fill-current text-inherit"
         >
           <g transform="matrix(1.3333333,0,0,-1.3333333,0,400)">
             <g transform="scale(0.1)">
@@ -106,7 +119,7 @@ const Header = () => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 400 400"
          
-          className="fill-current lg:h-[24px] lg:w-[26px] h-[22px] w-[22px] text-black"
+          className="fill-current lg:h-[24px] lg:w-[26px] h-[22px] w-[22px] text-inherit"
         >
           <g transform="matrix(1.3333333,0,0,-1.3333333,0,400)" ><g transform="scale(0.1)" id="g12">
             <path  d="m 1506.87,2587.11 c -225.04,0 -408.14,-183.08 -408.14,-408.11 0,-225.06 183.1,-408.13 408.14,-408.13 225.02,0 408.13,183.07 408.13,408.13 0,225.03 -183.11,408.11 -408.13,408.11 z m 0,-1038.56 c -347.64,0 -630.432,282.79 -630.432,630.45 0,347.63 282.792,630.43 630.432,630.43 347.63,0 630.42,-282.8 630.42,-630.43 0,-347.66 -282.79,-630.45 -630.42,-630.45 v 0"></path>
@@ -118,7 +131,7 @@ const Header = () => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 400 400"
         
-          className="lg:h-[24px] lg:w-[26px] h-[22px] w-[22px] fill-current text-black"
+          className="lg:h-[24px] lg:w-[26px] h-[22px] w-[22px] fill-current text-inherit"
         >
           <g transform="matrix(1.3333333,0,0,-1.3333333,0,400)">
             <g transform="scale(0.1)">
@@ -133,7 +146,7 @@ const Header = () => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 297.78668 398.66666"
          
-          className="fill-current lg:h-[24px] lg:w-[26px] h-[22px] w-[22px] text-black"
+          className="fill-current lg:h-[24px] lg:w-[26px] h-[22px] w-[22px] text-inherit"
         >
           <g transform="matrix(1.3333333,0,0,-1.3333333,0,398.66667)">
             <g transform="scale(0.1)">

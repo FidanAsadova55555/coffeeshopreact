@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         caudex:["Caudex",  "sans-serif"],
+        play:["Playfair Display",  "sans-serif"],
         archivo: ["Archivo", "sans-serif"],
         worksans: ["Work Sans", "sans-serif"],
         sofia: ['Sofia Pro Medium', 'sans-serif'],
@@ -23,10 +24,16 @@ module.exports = {
         border:"#eaeaea",
         myred:"#ed1f1f",
         title:"#aaa",
-        newstext:"#212529"
+        newstext:"#212529",
+        intro:"#e5e5e5"
       },
        screens: {
-        'xs': '320px', 
+        'xs': '320px',
+        'large': '991px', 
+        'medium': '600px', 
+        'small':'480px'
+
+ 
       },
       boxShadow: {
         custom: "0 0 3px rgba(0, 0, 0, .15)",

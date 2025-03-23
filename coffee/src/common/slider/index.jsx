@@ -1,27 +1,93 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 import styles from "./style.module.scss";
+import { useState } from "react";
+import { useEffect } from "react";
+const MySlider = ({ slide, slidesData = [] }) => {
+  const isIntro = slide?.type?.name === "Intro";
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-const MySlider = ({slide}) => {
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+  
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  
   return (
-    <div className={styles.mySwiper}>
+    <div className={`${styles.mySwiper} ${isIntro ? styles.introSlider : ""}`}>
       <Swiper
-        modules={[Navigation]}
-        navigation={{
+        key={windowWidth > 1492 ? "fidan" : "leyla"} 
+
+  modules={[Navigation, Pagination, Autoplay]}
+  loop={true}
+  {...(isIntro
+    ? {   pagination: {
+      clickable: true,
+    },
+
+        navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
-        }}
-        className={styles.swiperContainer}
-      >
-        <SwiperSlide className={styles.swiperSlide}>{slide}</SwiperSlide>
-        <SwiperSlide className={styles.swiperSlide}>{slide}</SwiperSlide>
+        },
+        className: styles.swiperContainer,
+      }
+    : {
+        slidesPerView: 2, 
+        slidesPerGroup: 2, 
+
+        spaceBetween: 0,
+        pagination: {
+          clickable: true,
+          type: "bullets",
+        },
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+        loopFillGroupWithBlank: true,
+
+        breakpoints: {
+          1492: {
+            slidesPerView: 3,
+            slidesPerGroup: 3, 
+
+            spaceBetween: 0,
+            autoplay: false,
+            
+          },
+        },
+        className: styles.swiperContainer,
+      })}
+>
+
+        {isIntro ? (
+          <>
+            <SwiperSlide className={styles.swiperSlide}>{slide}</SwiperSlide>
+            <SwiperSlide className={styles.swiperSlide}>{slide}</SwiperSlide>
+          </>
+        ) : (
+          slidesData.map((item, index) => (
+            <SwiperSlide key={index} className={styles.swiperSlide}>
+              {item}
+            </SwiperSlide>
+          ))
+        )}
+     
       </Swiper>
 
-      <div className={`  swiper-button-next ${styles.next}`} />
-      <div className={`swiper-button-prev ${styles.next}`} />
+      {isIntro && windowWidth > 1200  && (
+        <>
+          <div className={`swiper-button-next ${styles.next}`} />
+          <div className={`swiper-button-prev ${styles.next}`} />
+        </>
+      )}
     </div>
   );
 };

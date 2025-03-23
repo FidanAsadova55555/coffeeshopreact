@@ -31,8 +31,8 @@ module.exports = {
         'xs': '320px',
         'large': '991px', 
         'medium': '600px', 
-        'small':'480px'
-
+        'small':'480px',
+        'middle':'575px',
  
       },
       boxShadow: {

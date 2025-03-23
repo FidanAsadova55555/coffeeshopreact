@@ -50,7 +50,7 @@ const Header = () => {
   return (
     <>
 <header
-  className={`lg:py-[25px] py-[15px] transition-all ease-in-out duration-500 w-full ${
+  className={`lg:py-[25px]  py-[15px] transition-all ease-in-out duration-500 w-full ${
     isHomePage
       ? isScrolled
         ? "bg-[#1a1a1ae6] sticky top-0 z-50 text-white"

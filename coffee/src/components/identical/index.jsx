@@ -2,8 +2,11 @@ import React from 'react'
 import MySlider from '../../common/slider'
 import ProductCard from '../../common/product'
 import Button from '../../shared/button'
+import { useTranslation } from 'react-i18next';
 
 const Identical = ({ reverse = false }) => {
+    const { t } = useTranslation();
+  
   return (
     <div className='mb-[15px]'>
 <div className="grid grid-cols-1 md:grid-cols-2">
@@ -14,9 +17,8 @@ const Identical = ({ reverse = false }) => {
 </div>
 <div className={`${reverse ? "order-2 md:order-1" : "order-2"}`}>
 <div className='p-[2%] text-center'>
-    <h1 className='capitalize font-sofia text-newstext text-[40px] mb-[15px] leading-[1.2]'>everything for you</h1>
-    <h2 className='text-base text-black font-sofiaRegular mb-[30px]'>Limited edition. Eco-friendly. Not just for
-    working out</h2>
+    <h1 className='capitalize font-sofia text-newstext text-[40px] mb-[15px] leading-[1.2]'>{t("everythingForYou")}</h1>
+    <h2 className='text-base text-black font-sofiaRegular mb-[30px]'>{t("ecoLimitedDesc")}</h2>
     <MySlider slidesData={[<ProductCard/>, <ProductCard />,<ProductCard />,<ProductCard />,<ProductCard />, <ProductCard />]} />
     <Button/>
     </div>

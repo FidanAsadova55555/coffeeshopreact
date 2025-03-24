@@ -23,14 +23,14 @@
     display: inline-block;
     vertical-align: middle;
     text-transform: uppercase;
-  
+    color: inherit; 
     span {
       text-align: left;
       display: block;
       width: 23px;
       height: 2px;
       margin-bottom: 6px;
-      background-color: black;
+      background-color: currentColor;
 
     }
   

@@ -5,7 +5,13 @@ import styles from "./style.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router';
+import { useTranslation } from "react-i18next";
+import { useCookies } from "react-cookie";
 const Header = () => {
+  const { t, i18n } = useTranslation();
+  const [cookies, setCookie] = useCookies(["lang"]);
+  const [lang, setLang] = useState(cookies.lang || "en");
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [MenuOpen, setMenuOpen] = useState(true);
 
@@ -13,6 +19,9 @@ const Header = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1200); 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isLoginOpen, setIsLoginOpen] = useState(false); 
+  useEffect(() => {
+    i18n.changeLanguage(lang);
+  }, [lang, i18n]);
   
     const menuItems = [
         { name: "home", path: "/" },
@@ -45,6 +54,12 @@ const Header = () => {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
       }, []);
+      const handleLangChange = (newLang) => {
+        setLang(newLang);
+        setCookie("lang", newLang, { path: "/" });
+        i18n.changeLanguage(newLang);
+      };
+    
         const location = useLocation();
       const isHomePage = location.pathname === "/";
   return (
@@ -72,13 +87,14 @@ const Header = () => {
                 to={item.path}
        
               >
-                {item.name}
+                                {t(item.name)}
+
               </Link>
             ))}
         </div>
         {isSmallScreen && (
              <span 
-             className={`${styles.menu} text-black cursor-pointer`} 
+             className={`${styles.menu} ${ isHomePage ? "text-white" : "text-black"} cursor-pointer`} 
              onClick={() => setIsMenuOpen(!isMenuOpen)}
            >
           <span></span>
@@ -98,6 +114,13 @@ const Header = () => {
     <div className="lg:col-span-5 col-span-3 px-[15px]">
    
     <ul className="flex justify-end items-center  text-sm">
+    {!isSmallScreen && (
+      <li className='mr-[13px]'>
+      <div className="flex gap-[13px] font-sofia cursor-pointer">
+            <span onClick={() => handleLangChange("ru")} className={lang === "ru" ? "font-bold" : ""}>RU</span> | 
+            <span onClick={() => handleLangChange("en")} className={lang === "en" ? "font-bold" : ""}>ENG</span>
+          </div>
+      </li>)}
       <li className='mr-[13px]'>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -159,6 +182,7 @@ const Header = () => {
       </li>
     </ul>
  
+ 
 
 
     </div>
@@ -180,7 +204,7 @@ ${isMenuOpen ? "translate-x-0" : "-translate-x-full"} transition-transform durat
   <span></span>
 </span>
 
-      <h1 className='text-[14px]'>Menu</h1>
+      <h1 className='text-[14px]'>{t("menu")}</h1>
     </div>
 
     <div className={`  ${isLoginOpen ? "text-white bg-black" : "text-black bg-white"} transition-all ease-in-out duration-200  w-[50%] flex justify-center items-center text-[14px]  h-[55px] gap-[8px]`} onClick={() => {
@@ -203,7 +227,7 @@ ${isMenuOpen ? "translate-x-0" : "-translate-x-full"} transition-transform durat
           </g>
         </svg>
       </span>
-      <h1 className='text-[14px]'>Login</h1>
+      <h1 className='text-[14px]'>{t("login")}</h1>
     </div>
 
   </div>
@@ -213,7 +237,7 @@ ${isMenuOpen ? "translate-x-0" : "-translate-x-full"} transition-transform durat
     {menuItems.map((item) => (
       <div key={item.name} className='border-b w-full flex justify-between items-center border-bordercolor'>
         <Link className='p-[15px] font-sofia uppercase leading-[1.5rem] text-left' to={item.path}>
-          {item.name}
+        {t(item.name)}
         </Link>
         <div>
           <Link to={item.path}>
@@ -222,30 +246,32 @@ ${isMenuOpen ? "translate-x-0" : "-translate-x-full"} transition-transform durat
         </div>
       </div>
     ))}
+     <div className="flex border-b p-[15px]  uppercase leading-[1.5rem] text-left items-center border-bordercolor w-full gap-[13px] font-sofia cursor-pointer">
+            <span onClick={() => handleLangChange("ru")} className={lang === "ru" ? "font-bold" : ""}>RU</span> | 
+            <span onClick={() => handleLangChange("en")} className={lang === "en" ? "font-bold" : ""}>ENG</span>
+          </div>
+
   </div> )}
 {isLoginOpen && (
 <div className='py-[30px] px-[15px]'>
 <div className='flex flex-col justify-center text-[13px] items-center mt-[16px] font-sofiaRegular '>
   <div className='mb-[16px] w-full text-intext  h-[45px] border border-bordercolor'>
-  <input type="text" placeholder='Email address'  className=' py-[6px] px-[12px] h-full w-full outline-none border-none bg-transparent'/>
+  <input type="text" placeholder={t("emailAddress")}  className=' py-[6px] px-[12px] h-full w-full outline-none border-none bg-transparent'/>
   </div>
   <div className='mb-[16px] w-full text-intext  h-[45px]  border border-bordercolor '>
-  <input type="text" placeholder='Password'  className=' py-[6px] h-full w-full outline-none border-none bg-transparent px-[12px]'/>
+  <input type="text" placeholder={t("password")}  className=' py-[6px] h-full w-full outline-none border-none bg-transparent px-[12px]'/>
   </div>
   <div className='text-[#555] text-left w-full py-[8px]'>
-Forgot your password?
-  </div>
+{t("forgotPassword")}  </div>
   <button className='p-[11px] mt-[10px] text-white w-full tracking-[0.2em] uppercase bg-black'>
-log in
-  </button>
+{t("justlogin")}  </button>
   <div className='w-full'>
   <div className='my-[16px] w-full'>
-    <span className={`${styles.or} font-sofia`}>or</span>
+    <span className={`${styles.or} font-sofia`}>{t("or")}</span>
   </div>
 </div>
 <div className={styles.register}>
-  Register now
-</div>
+{t("registerNow")}</div>
 
 </div>
   </div>)}
@@ -257,7 +283,7 @@ log in
           <FontAwesomeIcon icon={faXmark} className="text-[12px] mr-[16px]" />
 
   <div className='tracking-[1.5px] font-sofia uppercase leading-[50px] text-[12px] 0'>
-close
+{t("close")}
   </div>
 </div>
 </div>

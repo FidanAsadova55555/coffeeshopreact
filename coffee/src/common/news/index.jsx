@@ -35,10 +35,10 @@ news
     About American Coffee
   </span>
 </h3>
-<h2 className='mt-[22px] text-sm  text-text'>
+{isNewsPage && (<h2 className='mt-[22px] text-sm  text-text'>
 Where can I get some?
 Etiam risus diam, porttitor vitae ultrices quis, dapibus id dolor.Morbi venenatis lacinia rhoncus.Lorem ipsu...
-</h2>
+</h2>)}
 <button className={`${styles.line} pb-[5px] hover:text-coffee relative font-semibold mt-[23px] text-sm text-black`}>
   Read more
 </button>

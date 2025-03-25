@@ -5,7 +5,7 @@ import animationData from '@/assets/Loading.json';
 
 
 
-export const Loading = () => {
+ const Loading = () => {
     const defaultOptions = {
         loop: true,
         autoplay: true,
@@ -26,3 +26,4 @@ export const Loading = () => {
         </div>
     )
 }
+export default Loading

@@ -1,11 +1,11 @@
 import React from "react";
 import { Breadcrumb } from "antd";
 import { Link, useLocation } from "react-router"; 
-
+import { useTranslation } from "react-i18next";
 const JustBreadcrumb = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
-
+  const { t } = useTranslation();
   const backgroundImages = {
     "/products": "https://monfee-store-demo.myshopify.com/cdn/shop/files/dark.jpg?v=1613541437",
     "/news": "https://monfee-store-demo.myshopify.com/cdn/shop/files/breacrumb.jpg?v=1613541437",
@@ -13,7 +13,9 @@ const JustBreadcrumb = () => {
 
   const currentBg = backgroundImages[location.pathname] || "";
   const isWhiteText = location.pathname === "/products"; 
-
+  const lastSegment = pathnames[pathnames.length - 1];
+  const capitalized = t(lastSegment).charAt(0).toUpperCase() + t(lastSegment).slice(1);
+  
   return (
     <div
       className={`font-sofia   text-center flex flex-col justify-center items-center w-full ${isWhiteText ? "py-[140px]" : "pt-[150px] pb-[130px]"}`}
@@ -26,8 +28,7 @@ const JustBreadcrumb = () => {
     > 
          <h1 className={` mb-[8px] font-medium tracking-[2px] leading-[1.5em] ${isWhiteText ? "text-white text-[40px]" : "text-black text-[46px]"}`}>
         {pathnames.length > 0
-          ? pathnames[pathnames.length - 1].charAt(0).toUpperCase() + pathnames[pathnames.length - 1].slice(1)
-          : "Home"}
+? capitalized  : "Home"}
       </h1>
 
       <Breadcrumb
@@ -49,7 +50,7 @@ const JustBreadcrumb = () => {
 
             }} 
           >
-            Home
+            {t("home")}
           </Link>
         </Breadcrumb.Item>
         {pathnames.map((name, index) => {
@@ -72,8 +73,7 @@ const JustBreadcrumb = () => {
 
                 }} 
               >
-                {name.charAt(0).toUpperCase() + name.slice(1)}
-              </Link>
+{capitalized}              </Link>
             </Breadcrumb.Item>
           );
         })}

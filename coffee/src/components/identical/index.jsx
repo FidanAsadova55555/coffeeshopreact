@@ -67,8 +67,8 @@ const Identical = ({ reverse = false, products = [], renderIndex = 0 }) => {
                   key={idx}
                   image={product.image?.url ? `http://localhost:1337${product.image.url}` : "https://via.placeholder.com/300"}
                   title={product.title}
-                  old={product.old_price}
-                  newprice={product.new_price}
+                  old={product.old}
+                  newprice={product.newprice}
                 />
               ))}
             />

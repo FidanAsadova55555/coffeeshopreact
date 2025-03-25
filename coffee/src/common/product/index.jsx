@@ -6,6 +6,8 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
 import styles from "./style.module.scss"
 const ProductCard = ({image,title,old,newprice}) => {
+  const discountPercentage = old ? Math.round(((old - newprice) / old) * 100) : 0;
+
   return (
     <div className='mb-[30px] font-sofia px-[15px] pb-[24px]'>
 <div className={`overflow-hidden  w-full h-auto ${styles.blur}`}>
@@ -33,9 +35,11 @@ const ProductCard = ({image,title,old,newprice}) => {
     </button>
   </li>
 </ul>
+{discountPercentage > 0 && (
+
 <div className={`${styles.sale}  bg-myred`}>
--7%
-</div>
+-{discountPercentage}%
+</div>)}
 <div className={styles.krujochki}>
   <div className={styles.circle}> </div>
   <div className={styles.circle}> </div>
@@ -49,8 +53,12 @@ const ProductCard = ({image,title,old,newprice}) => {
 </h3>
 </div>
 <div className='pt-[5px] leading-6 flex  gap-1 font-semibold justify-center items-center text-[15px]'>
-  <div className='text-old line-through'>{old}</div>
-  <div className='text-coffee '>{newprice}</div>
+{old && (
+
+  <div className='text-old line-through'>${Number(old).toFixed(2)}
+  </div>)}
+  <div className='text-coffee '>${Number(newprice).toFixed(2)}
+  </div>
 </div>
     </div>
   )

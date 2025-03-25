@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getAPIData } from '@/http/api';
 import { QueryKeys } from '@/constants/query';
 import Loading from '@/shared/loading';
+import { Link } from 'react-router';
 import { useState } from 'react';
 import { DataNotFoundContainer } from '@/shared/notfound';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -51,7 +52,7 @@ const Blog = () => {
   <div className="max-w-[1440px] mx-auto pb-[67px]">
   <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 '>
   {data && data?.data?.map((el, index) => (
-  <div key={index}>
+          <Link to={`/news/${el.id}`} key={index}>
     <NewsCard 
       title={el.title} 
       image={el.image?.formats?.large?.url 
@@ -61,8 +62,8 @@ const Blog = () => {
         date={el.date}
         category={el.category}
     />
-  </div>
-))}
+          </Link>
+        ))}
 
 
 

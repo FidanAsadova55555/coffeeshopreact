@@ -1,15 +1,14 @@
 import React from 'react'
 import styles from "./style.module.scss"
-const Detail = () => {
+const Detail = ({title,image,category,author}) => {
   return (
         <div className='pt-[64px] pb-[38px] mb-[38px]  border-b  border-border '>
 <h5 className='text-[30px] md:text-[50px] w-[80%] mx-auto  pb-[20px] font-sofiaRegular  text-center capitalize text-inherit'> 
-About American Coffee
-</h5>
+{title}</h5>
 <h4 className='text-center mb-[25px] md:mb-[40px] font-sofia'>
 <span className={`${styles.slash} text-[12px] uppercase text-title relative tracking-[0.2em] text-center`}> By :
   <span className='text-[12px] uppercase text-black tracking-[0.2em] font-medium pl-[5px]'>
-  Monfee-store-demo Admin
+{author}
   </span>
 </span>
 
@@ -20,7 +19,7 @@ About American Coffee
 
 </h4>
 <div className='pb-[30px] w-full h-auto overflow-hidden'>
-  <img src="https://monfee-store-demo.myshopify.com/cdn/shop/articles/Blog9_1024x1024.jpg?v=1592032255" alt="" className='w-full h-full object-cover'/>
+  <img src={image} alt={title} className='w-full h-full object-cover'/>
 </div>
 <div className='font-sofia'>
 <div className="mb-[8px] text-[28px]  capitalize  leading-[1.2] text-newstext  ">
@@ -62,7 +61,7 @@ Tags :
 <div className="text-[12px] 'px-[15px]' text-left pb-[20px] lg:pb-0  lg:text-right font-semibold text-black uppercase tracking-[0.2em]">
 categories :
 <span className="font-normal text-[#aaa] uppercase tracking-[0.2em]">
-news</span>
+{category}</span>
 </div>
 </div>
 

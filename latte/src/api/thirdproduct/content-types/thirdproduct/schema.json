@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "thirdproducts",
+  "info": {
+    "singularName": "thirdproduct",
+    "pluralName": "thirdproducts",
+    "displayName": "thirdproduct"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "old": {
+      "type": "decimal"
+    },
+    "newprice": {
+      "type": "decimal"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

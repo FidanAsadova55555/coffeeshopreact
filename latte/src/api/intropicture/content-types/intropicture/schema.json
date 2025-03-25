@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "intropictures",
+  "info": {
+    "singularName": "intropicture",
+    "pluralName": "intropictures",
+    "displayName": "intropicture"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "picture": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

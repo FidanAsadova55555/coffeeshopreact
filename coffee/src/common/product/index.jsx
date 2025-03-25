@@ -5,11 +5,11 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
 import styles from "./style.module.scss"
-const ProductCard = () => {
+const ProductCard = ({image,title,old,newprice}) => {
   return (
     <div className='mb-[30px] font-sofia px-[15px] pb-[24px]'>
 <div className={`overflow-hidden  w-full h-auto ${styles.blur}`}>
-    <img className='w-full h-full object-cover' src=" https://monfee-store-demo.myshopify.com/cdn/shop/products/5.3.jpg?v=1592041307" alt="" />
+    <img className='w-full h-full object-cover' src={image} alt={title} />
 <ul className={styles.iconslist} >
   <li>
   <button className={styles.tooltipWrapper}>
@@ -45,12 +45,12 @@ const ProductCard = () => {
 </div>
 <div className='text-center'>
 <h3 className='pt-[20px] pb-[10px]  inline-block capitalize text-black text-center hover:text-coffee transition-all ease-in-out duration-500'>
-coffee beans
+{title}
 </h3>
 </div>
 <div className='pt-[5px] leading-6 flex  gap-1 font-semibold justify-center items-center text-[15px]'>
-  <div className='text-old line-through'>$16.00</div>
-  <div className='text-coffee '>$15.00</div>
+  <div className='text-old line-through'>{old}</div>
+  <div className='text-coffee '>{newprice}</div>
 </div>
     </div>
   )

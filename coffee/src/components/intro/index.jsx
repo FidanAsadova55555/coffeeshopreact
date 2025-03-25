@@ -1,11 +1,11 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-const Intro = () => {
+const Intro = ({picture,title}) => {
     const { t } = useTranslation();
   
   return (
     <div className='w-full h-[776.34px] overflow-hidden relative  '>
-<img src="https://monfee-store-demo.myshopify.com/cdn/shop/files/slideshow-v42.jpg?v=1613542787" alt=""  className='w-full h-full object-cover'/>
+<img src={picture} alt={title}  className='w-full h-full object-cover'/>
 <div className="absolute top-1/2 -translate-y-1/2 left-[15px] middle:left-[13%]  z-[2]">
 <div className="capitalize font-play">
 <h1 className=' pb-[15px] leading-6 tracking-[4px] font-medium text-intro'>{t("styleDestination")}</h1>

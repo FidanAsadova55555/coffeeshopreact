@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "secondproducts",
+  "info": {
+    "singularName": "secondproduct",
+    "pluralName": "secondproducts",
+    "displayName": "secondproduct"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "old": {
+      "type": "decimal"
+    },
+    "newprice": {
+      "type": "decimal"
+    }
+  }
+}

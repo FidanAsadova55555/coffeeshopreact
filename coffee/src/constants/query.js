@@ -1,9 +1,12 @@
 export const QueryKeys = {
-    PRODUCTS: "products",
+    INTROPICTURES: "intropictures",
     NEWSCARDS:"newscards",
     BLOGS:"blogs",
-    SHOPS:"shops",
-    PAGINATIONSETTINGS:"paginationsettings"
+    PRODUCTS:"products",
+    SECONDPRODUCTS:"secondproducts",
+    THIRDPRODUCTS:"thirdproducts",
+    PAGINATIONSETTINGS:"paginationsettings",
+    IMAGES:"images"
 
   };
   

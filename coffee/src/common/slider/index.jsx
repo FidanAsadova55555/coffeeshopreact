@@ -7,8 +7,7 @@ import "swiper/css/pagination";
 import styles from "./style.module.scss";
 import { useState } from "react";
 import { useEffect } from "react";
-const MySlider = ({ slide, slidesData = [] }) => {
-  const isIntro = slide?.type?.name === "Intro";
+const MySlider = ({ slide = [], slidesData = [], isIntro = false }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -23,7 +22,7 @@ const MySlider = ({ slide, slidesData = [] }) => {
   return (
     <div className={`${styles.mySwiper} ${isIntro ? styles.introSlider : ""}`}>
       <Swiper
-        key={windowWidth > 1492 ? "fidan" : "leyla"} 
+        key={windowWidth > 1492 ? "stay" : "refresh"} 
 
   modules={[Navigation, Pagination, Autoplay]}
   loop={true}
@@ -66,28 +65,30 @@ const MySlider = ({ slide, slidesData = [] }) => {
         className: styles.swiperContainer,
       })}
 >
+{isIntro ? (
+  slide.map((item, index) => (
+    <SwiperSlide key={index} className={styles.swiperSlide}>
+      {item}
+    </SwiperSlide>
+  ))
+) : (
+  slidesData.map((item, index) => (
+    <SwiperSlide key={index} className={styles.swiperSlide}>
+      {item}
+    </SwiperSlide>
+  ))
+)}
 
-        {isIntro ? (
-          <>
-            <SwiperSlide className={styles.swiperSlide}>{slide}</SwiperSlide>
-            <SwiperSlide className={styles.swiperSlide}>{slide}</SwiperSlide>
-          </>
-        ) : (
-          slidesData.map((item, index) => (
-            <SwiperSlide key={index} className={styles.swiperSlide}>
-              {item}
-            </SwiperSlide>
-          ))
-        )}
      
       </Swiper>
 
-      {isIntro && windowWidth > 1200  && (
-        <>
-          <div className={`swiper-button-next ${styles.next}`} />
-          <div className={`swiper-button-prev ${styles.next}`} />
-        </>
-      )}
+      {isIntro && windowWidth > 1200 && (
+  <>
+    <div className={`swiper-button-next ${styles.next}`} />
+    <div className={`swiper-button-prev ${styles.next}`} />
+  </>
+)}
+
     </div>
   );
 };

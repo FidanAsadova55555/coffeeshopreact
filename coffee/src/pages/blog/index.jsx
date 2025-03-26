@@ -1,6 +1,6 @@
 import React from 'react'
 import JustBreadcrumb from '@/shared/breadcrumb'
-import NewsCard from '../../common/news'
+import NewsCard from '@/common/news'
 import { useQuery } from '@tanstack/react-query';
 import { getAPIData } from '@/http/api';
 import { QueryKeys } from '@/constants/query';

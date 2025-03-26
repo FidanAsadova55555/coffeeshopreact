@@ -1,6 +1,7 @@
 export const QueryKeys = {
     INTROPICTURES: "intropictures",
-    NEWSCARDS:"newscards",
+    NEWSCARDS:"newscards",   
+    SHOPCARDS:"shopcards",
     BLOGS:"blogs",
     PRODUCTS:"products",
     SECONDPRODUCTS:"secondproducts",

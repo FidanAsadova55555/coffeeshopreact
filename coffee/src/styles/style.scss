@@ -23,6 +23,11 @@
     @apply w-full border border-[#d6d6d6] text-black  py-[11px] pl-[23px] text-[14px] font-sofia;
   }
 }
+@layer utilities {
+  .seredina {
+    @apply flex justify-center items-center;
+  }
+}
 
 
 @import "remixicon/fonts/remixicon.css";

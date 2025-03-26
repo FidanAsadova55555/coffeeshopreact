@@ -10,7 +10,7 @@ import { DataNotFoundContainer } from '@/shared/notfound';
 import { Link } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft ,faAngleRight } from "@fortawesome/free-solid-svg-icons";
-
+import css from "./style.module.scss"
 const Products = () => {
     const [currentPage, setCurrentPage] = useState(1);
   
@@ -50,7 +50,7 @@ const Products = () => {
     <>
     <JustBreadcrumb/>
 <div className='max-w-[1670px]   mx-auto'>
-  <div className='mt-[50px] mb-[20px] px-[15px] font-sofia grid grid-cols-12 '>
+  <div className='pt-[50px] pb-[20px] px-[15px] font-sofia grid grid-cols-12 '>
     <div className='col-span-8 '>
       <div className='flex justify-start items-center'>
         <button className='border border-black bg-transparent transition-all text-black duration-300 ease-in-out hover:bg-coffee hover:border-coffee hover:text-white  py-[8px] px-[20px]'>
@@ -62,9 +62,32 @@ const Products = () => {
         </button>
       </div>
     </div>
-    <div className='col-span-4'></div>
+    <div className='col-span-4'>
+      <div className='flex justify-end items-center '>
+        <button className='border border-black w-[42px] flex justify-center items-center mr-[10px] h-[42px] '>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="22px" height="22px" viewBox="0 0 276.167 276.167"   style={{ enableBackground: "new 0 0 276.167 276.167" }} xml:space="preserve">
+                  <g>
+                    <g>
+                      <path d="M33.144,2.471C15.336,2.471,0.85,16.958,0.85,34.765s14.48,32.293,32.294,32.293s32.294-14.486,32.294-32.293    S50.951,2.471,33.144,2.471z"></path>
+                      <path d="M137.663,2.471c-17.807,0-32.294,14.487-32.294,32.294s14.487,32.293,32.294,32.293c17.808,0,32.297-14.486,32.297-32.293    S155.477,2.471,137.663,2.471z"></path>
+                      <path d="M243.873,67.059c17.804,0,32.294-14.486,32.294-32.293S261.689,2.471,243.873,2.471s-32.294,14.487-32.294,32.294    S226.068,67.059,243.873,67.059z"></path>
+                      <path d="M32.3,170.539c17.807,0,32.297-14.483,32.297-32.293c0-17.811-14.49-32.297-32.297-32.297S0,120.436,0,138.246    C0,156.056,14.493,170.539,32.3,170.539z"></path>
+                      <path d="M136.819,170.539c17.804,0,32.294-14.483,32.294-32.293c0-17.811-14.478-32.297-32.294-32.297    c-17.813,0-32.294,14.486-32.294,32.297C104.525,156.056,119.012,170.539,136.819,170.539z"></path>
+                      <path d="M243.038,170.539c17.811,0,32.294-14.483,32.294-32.293c0-17.811-14.483-32.297-32.294-32.297    s-32.306,14.486-32.306,32.297C210.732,156.056,225.222,170.539,243.038,170.539z"></path>
+                      <path d="M33.039,209.108c-17.807,0-32.3,14.483-32.3,32.294c0,17.804,14.493,32.293,32.3,32.293s32.293-14.482,32.293-32.293    S50.846,209.108,33.039,209.108z"></path>
+                      <path d="M137.564,209.108c-17.808,0-32.3,14.483-32.3,32.294c0,17.804,14.487,32.293,32.3,32.293    c17.804,0,32.293-14.482,32.293-32.293S155.368,209.108,137.564,209.108z"></path>
+                      <path d="M243.771,209.108c-17.804,0-32.294,14.483-32.294,32.294c0,17.804,14.49,32.293,32.294,32.293    c17.811,0,32.294-14.482,32.294-32.293S261.575,209.108,243.771,209.108z"></path>
+                    </g>
+                  </g>
+                </svg>
+        </button>
+        <button className='border border-black py-[9px] px-[5px] min-w-[160px] text-[15px]'>
+        <p className={`capitalize ${css.down}`}>featured</p>
+        </button>
+      </div>
+    </div>
   </div>
-  <div className='grid grid-cols-2 lg:grid-cols-4'>
+  <div className=' mt-[30px] grid grid-cols-2 lg:grid-cols-4'>
 {data && data?.data?.map((shop, idx) => (
           <Link to={`/shop/${shop.id}`} key={idx}>
                      <ProductCard
@@ -78,11 +101,11 @@ const Products = () => {
 
 
 </div>
-<div className="flex justify-center mt-[50px] pb-[20px]">
+<div className="flex justify-center mt-[50px] mb-[15px] pb-[20px]">
 {currentPage !== 1 && (
   <button
     onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-    className="w-[45px] h-[45px] border border-[#e3e3e3]  leading-[43px] text-center inline-block text-[18px] font-medium text-newstext transition-all ease-in-out duration-300 hover:text-white hover:bg-newstext bg-transparent mr-[4px]"
+    className="w-[42px] seredina h-[42px] border border-[#e3e3e3]  leading-[43px] text-center inline-block text-[18px] font-medium text-newstext transition-all ease-in-out duration-300 hover:text-white hover:bg-newstext bg-transparent mr-[9px]"
   >
 <FontAwesomeIcon icon={faAngleLeft} />
 </button>
@@ -90,22 +113,22 @@ const Products = () => {
 
 <button
   onClick={() => setCurrentPage(1)}
-  className={`w-[45px] font-sofia h-[45px] border border-[#e3e3e3]  leading-[43px] text-center inline-block text-[18px] font-medium ${
+  className={`w-[42px] seredina font-sofia h-[42px] border border-[#e3e3e3]  leading-[43px] text-center inline-block text-[18px] font-medium ${
     currentPage === 1
       ? "text-white bg-newstext"
       : "text-newstext bg-transparent hover:text-white hover:bg-newstext"
-  } mr-[4px]`}
+  } mr-[9px]`}
 >
   1
 </button>
 
 <button
   onClick={() => setCurrentPage(2)}
-  className={`w-[45px] font-sofia h-[45px] border border-[#e3e3e3] leading-[43px] text-center inline-block text-[18px] font-medium ${
+  className={`w-[42px] seredina font-sofia h-[42px] border border-[#e3e3e3] leading-[43px] text-center inline-block text-[18px] font-medium ${
     currentPage === 2
       ? "text-white bg-newstext"
       : "text-newstext bg-transparent hover:text-white hover:bg-newstext"
-  } mr-[4px]`}
+  } mr-[9px]`}
 >
   2
 </button>
@@ -113,7 +136,7 @@ const Products = () => {
 {currentPage !== 2 && (
   <button
     onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-    className="w-[45px] h-[45px] border border-[#e3e3e3] leading-[43px] text-center inline-block text-[18px] font-medium text-newstext transition-all ease-in-out duration-300 hover:text-white hover:bg-newstext bg-transparent mr-[4px]"
+    className="w-[42px] seredina h-[42px] border border-[#e3e3e3] leading-[43px]  text-center inline-block text-[18px] font-medium text-newstext transition-all ease-in-out duration-300 hover:text-white hover:bg-newstext bg-transparent mr-[9px]"
   >
 <FontAwesomeIcon icon={faAngleRight} />
 </button>

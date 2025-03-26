@@ -6,7 +6,8 @@ import DynamicTitle from '../components/dynamic';
 
 const Layout = () => {
     return (
-      <div>    <DynamicTitle />
+      <div>  
+          <DynamicTitle />
 <Header/>
       <main> <Outlet /></main>
         <Footer/>

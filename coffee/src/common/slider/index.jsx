@@ -45,7 +45,9 @@ const MySlider = ({ slide = [], slidesData = [], isIntro = false }) => {
         pagination: {
           clickable: true,
           type: "bullets",
+
         },
+        
         autoplay: {
           delay: 3000,
           disableOnInteraction: false,
@@ -55,15 +57,19 @@ const MySlider = ({ slide = [], slidesData = [], isIntro = false }) => {
         breakpoints: {
           1492: {
             slidesPerView: 3,
-            slidesPerGroup: 3, 
-
+            slidesPerGroup: 2, 
             spaceBetween: 0,
-            autoplay: false,
+            autoplay: {
+              delay: 3000,
+              disableOnInteraction: false,
+            },
+                        loop: false, 
             
           },
         },
         className: styles.swiperContainer,
       })}
+      
 >
 {isIntro ? (
   slide.map((item, index) => (

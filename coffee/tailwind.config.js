@@ -33,6 +33,7 @@ module.exports = {
         'medium': '600px', 
         'small':'480px',
         'middle':'575px',
+        'normal':'1200px'
  
       },
       boxShadow: {

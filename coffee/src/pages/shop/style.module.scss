@@ -10,3 +10,50 @@
     border-bottom: 0;
     border-left: .3em solid transparent;
     }
+    .circlecolors{
+        display: inline-block;
+          width: 20px;
+          height: 20px;
+          margin-bottom: 10px;
+          margin-right: 10px;
+          border-radius: 50%;
+          position: relative;
+          &::after{
+            content: "";
+          border: 1px solid #ccc;
+          width: 28px;
+          height: 28px;
+          position: absolute;
+          border-radius: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          top: 50%;
+          transition: all .3s ease;
+          opacity: 0;
+          }
+          &:hover{
+&::after{
+              opacity:1 ;
+            }
+          }
+      }
+      .sizes{
+        padding-bottom: 7px;
+        padding-right: 5px;
+       
+vertical-align: middle;
+    text-align: center;
+   .size{
+    transition: all .3s ease;
+    font-size: 14px;
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid black !important;
+   }
+    &:hover{
+       .size{
+        color: #fff;
+        background: #000;
+       }
+    }
+      }

@@ -13,7 +13,7 @@
         visibility: hidden;
         z-index: 999;
         .circle{
-            margin: 0 7px;
+          margin-left: 7px;
             transition: all ease-in-out 0.3s;
             transform: scale(1.0);
             border-radius: 50%;
@@ -21,7 +21,6 @@
         width: 15px;
         height: 15px;
         display: inline-block;
-        background-color: #d2b48c;
         &:hover{
             transform: scale(1.2);
 

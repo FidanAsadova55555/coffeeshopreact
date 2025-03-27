@@ -5,9 +5,17 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
 import styles from "./style.module.scss"
-const ProductCard = ({image,title,old,newprice}) => {
+const ProductCard = ({image,title,old,newprice,colors}) => {
   const discountPercentage = old ? Math.round(((old - newprice) / old) * 100) : 0;
-
+  const colorShadeMap = {
+    chocolate: '#8b4513',
+    lightyellow: '#ffffe0',
+    cream:'#d2b48c',
+    white: '#fffafa',
+    red: '#a52a2a',
+    black: '#000',
+  };
+  
   return (
     <div className='mb-[30px] font-sofia px-[15px] pb-[24px]'>
 <div className={`overflow-hidden  w-full h-auto ${styles.blur}`}>
@@ -40,12 +48,21 @@ const ProductCard = ({image,title,old,newprice}) => {
 <div className={`${styles.sale}  bg-myred`}>
 -{discountPercentage}%
 </div>)}
-<div className={styles.krujochki}>
-  <div className={styles.circle}> </div>
-  <div className={styles.circle}> </div>
-  <div className={styles.circle}> </div>
+{colors && Array.isArray(colors) && (
+  <div className={styles.krujochki}>
+    {colors.map((colorItem, idx) => (
+      <div
+        key={idx}
+        className={styles.circle}
+        style={{
+          backgroundColor: colorShadeMap[colorItem.color?.toLowerCase()] || colorItem.color
+        }}
+      />
+    ))}
+  </div>
+)}
 
-</div>
+
 </div>
 <div className='text-center'>
 <h3 className='pt-[20px] pb-[10px]  inline-block capitalize text-black text-center hover:text-coffee transition-all ease-in-out duration-500'>

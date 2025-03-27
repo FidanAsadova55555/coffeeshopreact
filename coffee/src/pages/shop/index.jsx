@@ -11,9 +11,33 @@ import { Link } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft ,faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import css from "./style.module.scss"
+
 const Products = () => {
     const [currentPage, setCurrentPage] = useState(1);
-  
+    // const [startColumn, setColumn] = useState(3);
+
+    const [colors, setColors] = useState('')
+    const [categories, setCategories] = useState('')
+    const [sizes, setSizes] = useState('')
+    const [selectedPrice, setSelectedPrice] = useState(null);
+
+    const priceRanges = [
+      { label: '$10–$20', min: 10, max: 20 },
+      { label: '$20–$30', min: 20, max: 30 },
+      { label: '$30–$40', min: 30, max: 40 },
+      { label: '$40–$50', min: 40, max: 50 },
+      { label: 'Over $50', min: 50, max: Infinity },
+    ];
+    
+    const colorShadeMap = {
+      chocolate: '#8b4513',
+      lightyellow: '#ffffe0',
+      cream:'#d2b48c',
+      white: '#fffafa',
+      red: '#a52a2a',
+      black: '#000',
+    };
+    
   const { data: settingsData, isLoading: settingsLoading, isError: settingsError, error: settingsErrorMessage } = useQuery({
       queryKey: [QueryKeys.PAGINATIONSETTINGS],
       queryFn: async () => {
@@ -24,11 +48,52 @@ const Products = () => {
     });const pageSize = settingsData?.pagesize || 8;
   
     console.log("Using page size:", pageSize); 
-    const { data, isLoading, isError, error } = useQuery({
-      queryKey: [QueryKeys.SHOPCARDS, currentPage, pageSize],
-      queryFn: async () =>
-        await getAPIData(`shopcards?pagination[page]=${currentPage}&pagination[pageSize]=${pageSize}&populate=*`),
+    // const { data, isLoading, isError, error } = useQuery({
+    //   queryKey: [QueryKeys.SHOPCARDS, currentPage, pageSize],
+    //   queryFn: async () =>
+    //     await getAPIData(`shopcards?pagination[page]=${currentPage}&pagination[pageSize]=${pageSize}&populate=*`),
+    // });
+    const { data: mydata } = useQuery({
+      queryKey: [QueryKeys.CATEGORIES],
+      queryFn: async () => await getAPIData("categories"),
     });
+    console.log(mydata, "salam");
+    
+    const { data: maybe } = useQuery({
+      queryKey: [QueryKeys.COLORS],
+      queryFn: async () => await getAPIData("colors"),
+    });
+    console.log(maybe, "maybe");
+    const { data: size } = useQuery({
+      queryKey: [QueryKeys.SIZES],
+      queryFn: async () => await getAPIData("sizes"),
+      
+    });
+    console.log(size, "size");
+    const { data,isLoading, isError, error  } = useQuery({
+      queryKey: [QueryKeys.PRODUCTS, colors, currentPage,categories,sizes, pageSize],
+      queryFn: async () => {
+        let query = `shopcards?pagination[page]=${currentPage}&pagination[pageSize]=${pageSize}&populate=*`;
+        console.log("just for checking:", query);  
+
+        if (colors) {
+          query += `&filters[colors][color][$contains]=${encodeURIComponent(colors)}`;
+          
+        }
+        if (categories) {
+          query += `&filters[categories][name][$contains]=${encodeURIComponent(categories)}`;
+        }
+        if (sizes) {
+          query += `&filters[sizes][size][$contains]=${encodeURIComponent(categories)}`;
+        }
+
+        return await getAPIData(query);
+      }, 
+      enabled: !!pageSize && !!mydata && !!maybe && !!size
+
+    })
+     
+
     if (isLoading) return <div>
   <div className='flex justify-center items-center'>
   <div className='w-[500px] h-[500px] overflow-hidden'>
@@ -43,14 +108,15 @@ const Products = () => {
   </div>
   </div>
     </div>;
-    console.log(data)
+    console.log(data ,"sixteen")
     const totalPages = data?.meta?.pagination?.pageCount || 1;
-  
+   
   return (
     <>
     <JustBreadcrumb/>
 <div className='max-w-[1670px]   mx-auto'>
-  <div className='pt-[50px] pb-[20px] px-[15px] font-sofia grid grid-cols-12 '>
+ <div className='px-[15px]'>
+ <div className='pt-[50px] pb-[20px] font-sofia grid grid-cols-12 '>
     <div className='col-span-8 '>
       <div className='flex justify-start items-center'>
         <button className='border border-black bg-transparent transition-all text-black duration-300 ease-in-out hover:bg-coffee hover:border-coffee hover:text-white  py-[8px] px-[20px]'>
@@ -87,17 +153,98 @@ const Products = () => {
       </div>
     </div>
   </div>
+  <div className='grid grid-cols-5 p-[30px]  border border-[#e6e6e6]'>
+    <div className='px-[15px]'>
+    <p className='chertocka'>categories</p>
+    <ul className=" capitalize  text-[15px]  font-sofia mb-[16px]">
+                {mydata && mydata?.data?.map((el) => (
+                  <li
+                    className="leading-[1.4] pb-[5px] cursor-pointer"
+                    key={el.id}
+                    onClick={() => {
+                      setCategories(el.name === "all rooms" ? '' : el.name); setColors('');setSizes('');}}>
+                        {el.name}
+                  </li>
+                ))}
+              </ul>
+    </div>
+    <div className='px-[15px]'>
+      <p className='chertocka'>color option</p>
+      <ul className="flex justify-start items-center mb-[16px]">
+                {maybe && maybe?.data?.map((el) => (
+                  <li
+                    className={`${css.circlecolors}`}
+                    key={el.id}
+                    onClick={() => {
+                      console.log("color:", el.color);
+                      setColors(el.color);setCategories('');setSizes('');
+                    }}
+                    style={{
+                      backgroundColor: colorShadeMap[el.color?.toLowerCase()] || colorItem.color
+                    }}
+                  >
+          {el.name}
+                  </li>
+                ))}
+              </ul>
+    </div>
+    <div className='px-[15px]'>
+    <p className='chertocka'>size option</p>
+    <ul className="flex justify-start font-sofia items-center mb-[16px]">
+                {size && size?.data?.map((el) => (
+                  <li
+                  className={css.sizes}
+                    key={el.id}
+                    onClick={() => {
+                      console.log("size:", el.size);
+                      setSizes(el.size);setCategories('');setColors('');
+                    }}
+                   
+                  >
+<p className={css.size}>{el.size}g</p>                  
+</li>
+                ))}
+              </ul>
+    </div>
+    <div className='px-[15px]'></div>
+    <div className='px-[15px]'>
+  <p className='chertocka mb-[8px]'>Price Filter</p>
+  <ul className="capitalize mb-[16px] text-[15px] font-sofia ">
+    {priceRanges.map((range, index) => (
+      <li
+        key={index}
+        className={`leading-[1.4] pb-[5px] cursor-pointer hover:text-coffee ${selectedPrice?.label === range.label ? 'text-coffee' : ''}`}
+        onClick={() => setSelectedPrice(range)}
+      >
+        {range.label}
+      </li>
+    ))}
+    
+  </ul>
+</div>
+
+
+  </div>
+ </div>
   <div className=' mt-[30px] grid grid-cols-2 lg:grid-cols-4'>
-{data && data?.data?.map((shop, idx) => (
-          <Link to={`/shop/${shop.id}`} key={idx}>
-                     <ProductCard
-                     image={shop.image?.url ? `http://localhost:1337${shop.image.url}` : "https://via.placeholder.com/300"}
-                     title={shop.title}
-                     old={shop.old}
-                     newprice={shop.newprice}
-                   />
-          </Link>
-        ))}
+  {data && data?.data
+  ?.filter((shop) => {
+    if (!selectedPrice) return true;
+    const price = parseFloat(shop.newprice);
+    return price >= selectedPrice.min && price < selectedPrice.max;
+  })
+  .map((shop, idx) => (
+    <Link to={`/shop/${shop.id}`} key={idx}>
+      <ProductCard
+        image={shop.image?.url ? `http://localhost:1337${shop.image.url}` : "https://via.placeholder.com/300"}
+        title={shop.title}
+        old={shop.old}
+        newprice={shop.newprice}
+        colors={shop.colors}
+      />
+    </Link>
+))}
+
 
 
 </div>

@@ -7,7 +7,12 @@ export const QueryKeys = {
     SECONDPRODUCTS:"secondproducts",
     THIRDPRODUCTS:"thirdproducts",
     PAGINATIONSETTINGS:"paginationsettings",
-    IMAGES:"images"
+    IMAGES:"images",
+    COLORS:"colors",
+    SIZES:"sizes",
+    CATEGORIES:"categories"
+
+
 
   };
   

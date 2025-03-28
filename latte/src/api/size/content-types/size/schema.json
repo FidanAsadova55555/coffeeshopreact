@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sizes",
+  "info": {
+    "singularName": "size",
+    "pluralName": "sizes",
+    "displayName": "size",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "size": {
+      "type": "decimal"
+    },
+    "shopcards": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::shopcard.shopcard",
+      "mappedBy": "sizes"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}

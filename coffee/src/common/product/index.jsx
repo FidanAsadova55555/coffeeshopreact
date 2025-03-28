@@ -48,7 +48,7 @@ const ProductCard = ({image,title,old,newprice,colors}) => {
 <div className={`${styles.sale}  bg-myred`}>
 -{discountPercentage}%
 </div>)}
-{colors && Array.isArray(colors) && (
+{colors && Array.isArray(colors) && colors.length > 1 && (
   <div className={styles.krujochki}>
     {colors.map((colorItem, idx) => (
       <div

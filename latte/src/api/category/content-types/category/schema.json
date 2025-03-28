@@ -15,17 +15,14 @@
     "name": {
       "type": "string"
     },
-    "slug": {
-      "type": "uid"
+    "idx": {
+      "type": "integer"
     },
-    "articles": {
+    "shopcards": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::article.article",
-      "mappedBy": "category"
-    },
-    "description": {
-      "type": "text"
+      "relation": "manyToMany",
+      "target": "api::shopcard.shopcard",
+      "mappedBy": "categories"
     }
   }
 }

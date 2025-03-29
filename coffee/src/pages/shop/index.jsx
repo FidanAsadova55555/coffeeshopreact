@@ -73,7 +73,7 @@ const Products = () => {
     const { data,isLoading, isError, error  } = useQuery({
       queryKey: [QueryKeys.PRODUCTS, colors, currentPage,categories,sizes, pageSize],
       queryFn: async () => {
-        let query = `shopcards?pagination[page]=${currentPage}&pagination[pageSize]=${pageSize}&populate=*`;
+let query = `shopcards?pagination[page]=${currentPage}&pagination[pageSize]=${pageSize}&populate[colors][populate]=image&populate=image`;
         console.log("just for checking:", query);  
 
         if (colors) {
@@ -86,8 +86,11 @@ const Products = () => {
         if (sizes) {
           query += `&filters[sizes][size][$contains]=${encodeURIComponent(categories)}`;
         }
+console.log("Final Query:", query);
 
-        return await getAPIData(query);
+const response = await getAPIData(query);
+console.log("FULL SHOPCARD RESPONSE:", response);
+return response;
       }, 
       enabled: !!pageSize && !!mydata && !!maybe && !!size
 

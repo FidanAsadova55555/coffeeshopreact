@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -6,6 +6,8 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
 import styles from "./style.module.scss"
 const ProductCard = ({image,title,old,newprice,colors}) => {
+  const [mainImage, setMainImage] = useState(image);
+
   const discountPercentage = old ? Math.round(((old - newprice) / old) * 100) : 0;
   const colorShadeMap = {
     chocolate: '#8b4513',
@@ -15,11 +17,20 @@ const ProductCard = ({image,title,old,newprice,colors}) => {
     red: '#a52a2a',
     black: '#000',
   };
+
+  const handleColorClick = (imgUrl) => {
+    setMainImage(`http://localhost:1337${imgUrl}`);
+  };
+
   
   return (
     <div className='mb-[30px] font-sofia px-[15px] pb-[24px]'>
 <div className={`overflow-hidden  w-full h-auto ${styles.blur}`}>
-    <img className='w-full h-full object-cover' src={image} alt={title} />
+<img
+  className='w-full h-full object-cover'
+  src={mainImage || "https://via.placeholder.com/300"}
+  alt={title}
+/>
 <ul className={styles.iconslist} >
   <li>
   <button className={styles.tooltipWrapper}>
@@ -54,8 +65,19 @@ const ProductCard = ({image,title,old,newprice,colors}) => {
       <div
         key={idx}
         className={styles.circle}
+        role="button"
+        tabIndex={0}
         style={{
           backgroundColor: colorShadeMap[colorItem.color?.toLowerCase()] || colorItem.color
+        }}
+        onClick={(e) => {
+         e.preventDefault();
+    e.stopPropagation(); 
+    console.log("Clicked Color:", colorItem.color);
+    console.log("Image URL:", colorItem.image?.url);
+          if (colorItem.image?.url) {
+            handleColorClick(colorItem.image.url);
+          }
         }}
       />
     ))}

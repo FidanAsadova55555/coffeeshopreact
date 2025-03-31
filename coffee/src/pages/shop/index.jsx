@@ -272,7 +272,7 @@ const Products = () => {
         <div className={`mt-[30px] grid grid-cols-2 ${columnClasses[startColumn]}`}>
   {filteredProducts && filteredProducts.length > 0 ? (
     filteredProducts.map((shop) => (
-      <Link to={`/shop/${shop.id}`} key={`${shop.id}-${shop.title}`}>
+      <Link to={`/products/${shop.id}`} key={`${shop.id}-${shop.title}`}>
         <ProductCard
           image={shop.image?.url ? `http://localhost:1337${shop.image.url}` : "https://via.placeholder.com/300"}
           title={shop.title}

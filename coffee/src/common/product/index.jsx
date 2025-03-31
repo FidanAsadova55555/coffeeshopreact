@@ -87,17 +87,22 @@ const ProductCard = ({image,title,old,newprice,colors}) => {
 
 </div>
 <div className='text-center'>
-<h3 className='pt-[20px] pb-[10px]  inline-block capitalize text-black text-center hover:text-coffee transition-all ease-in-out duration-500'>
+{ title && (
+    <h3 className='pt-[20px] pb-[10px]  inline-block capitalize text-black text-center hover:text-coffee transition-all ease-in-out duration-500'>
 {title}
 </h3>
+  )
+}
 </div>
 <div className='pt-[5px] leading-6 flex  gap-1 font-semibold justify-center items-center text-[15px]'>
 {old && (
 
   <div className='text-old line-through'>${Number(old).toFixed(2)}
   </div>)}
-  <div className='text-coffee '>${Number(newprice).toFixed(2)}
+  {newprice && (
+    <div className='text-coffee '>${Number(newprice).toFixed(2)}
   </div>
+  )}
 </div>
     </div>
   )

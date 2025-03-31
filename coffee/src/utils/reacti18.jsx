@@ -46,11 +46,64 @@ pagination: "Pagination",
   company: "Company",
   news: "News",
 products: "Products",
+coffeeGreatness: "This coffee was brewed for greatness.",
+coffeeWarning: "Warning: May cause extreme productivity.",
+productDetails: "Product Details",
+productDescription: "Not all heroes wear capes — some come in beans. This coffee is your trusty sidekick through Monday mornings, Zoom calls, and existential crises. Hand-roasted to perfection and bold enough to wake your soul (and maybe your neighbor), it delivers flavor so smooth you’ll wonder why you ever tolerated instant. Sip responsibly — productivity may skyrocket.",
+thingsToKnow: "Things You Need to Know",
+moreInfo: "More Information for You",
+securityNotice: "We use industry standard SSL encryption to protect your details. Potentially sensitive information such as your name, address and card details are encoded so they can only be read on the secure server.",
+paymentList: [
+  "Safe Payments",
+  "Accept Credit Card",
+  "Different Payment Methods",
+  "Price Includes VAT",
+  "Easy to Order"
+],shippingInfo: [
+  "Europe & USA within 2-4 days",
+  "Rest of the world within 3-7 days",
+  "Selected locations"
+]
+,expressDelivery: "Express Delivery",
+needMoreInfo: "Need more information",
+helpLinks: [
+  "Orders & Shipping",
+  "Returns & Refunds",
+  "Payments",
+  "Your Orders"
+]
+
 
     }
   },
   ru: {
     translation: {
+      helpLinks: [
+        "Заказы и доставка",
+        "Возвраты и возмещения",
+        "Платежи",
+        "Ваши заказы"
+      ],      
+      expressDelivery: "Экспресс-доставка",
+      needMoreInfo: "Нужна дополнительная информация",
+      shippingInfo: [
+        "Доставка по Европе и США в течение 2–4 дней",
+        "Доставка в другие страны в течение 3–7 дней",
+        "Только в определённые регионы"
+      ]
+,      
+      paymentList: [
+        "Безопасные платежи",
+        "Принимаем банковские карты",
+        "Разные способы оплаты",
+        "Цена включает НДС",
+        "Легкий процесс заказа"
+      ],
+      securityNotice: "Мы используем шифрование SSL по отраслевому стандарту для защиты ваших данных. Потенциально конфиденциальная информация, такая как ваше имя, адрес и данные карты, кодируется так, чтобы её можно было прочитать только на защищённом сервере.",
+      thingsToKnow: "Что вам нужно знать",
+      moreInfo: "Дополнительная информация для вас",
+      productDetails: "Описание товара",
+      productDescription: "Не все герои носят плащи — некоторые приходят в виде зёрен. Этот кофе — ваш верный напарник по понедельникам, онлайн-встречам и экзистенциальным кризисам. Обжарен вручную до совершенства и достаточно крепкий, чтобы разбудить не только вас, но и, возможно, соседа. Вкус настолько мягкий, что вы задумаетесь, как раньше пили растворимый. Пейте ответственно — продуктивность может зашкалить.",
         home: "Главная",
       shop: "Магазин",
       featured: "Избранное",
@@ -89,6 +142,9 @@ aboutUs: "О нас",
   company: "Компания",
   news: "Новости",
   products: "Товары",
+  coffeeGreatness: "Этот кофе заварен для великих дел.",
+coffeeWarning: "Внимание: может вызвать чрезмерную продуктивность.",
+
   
     }
   }

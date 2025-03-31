@@ -33,5 +33,15 @@
   @apply relative font-sofia capitalize text-[18px] pb-[10px] mb-[20px] before:content-[''] before:absolute before:h-[1px] before:w-[55px] before:bg-coffee before:bottom-0
 }
 }
+@layer utilities {
+  .img {
+    @apply w-full h-full object-cover;
+  }
+}
+@layer utilities {
+  .justext {
+    @apply text-base text-old py-[4px] font-sofia;
+  }
+}
 
 @import "remixicon/fonts/remixicon.css";

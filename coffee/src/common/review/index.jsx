@@ -48,7 +48,6 @@ const ProductTabs = () => {
 
   return (
     <div className='border-b border-b-[#e4e4e4] pb-[30px] mb-[30px]'>
-      {/* Tabs */}
      <div className='border-y border-y-[#e4e4e4]'>
      <div className="flex  max-w-[1440px] py-[25px]  mx-auto px-[15px] text-[18px] text-black font-sofia ">
         {tabs.map((tab) => (
@@ -65,13 +64,12 @@ const ProductTabs = () => {
       </div>
      </div>
 
-      {/* Tab Content */}
       <div >
         {activeTab === 'description' && (
-          <div className=' max-w-[1440px] mx-auto pr-[15px]'>
+          <div className=' max-w-[1440px] mx-auto pr-0 md:pr-[15px]'>
           <div className='pt-[40px]'>
             <div className='py-[25px]'>
-                <div className='grid grid-cols-2'>
+                <div className='grid grid-cols-1 md:grid-cols-2'>
                     <div className='px-[15px] seredina'>
 <div className='max-w-[558px] h-auto overflow-hidden'>
 <img src="https://cdn.shopify.com/s/files/1/0411/0660/4200/files/description-1.jpg?v=1592043788" alt="img" className='img' />
@@ -175,9 +173,9 @@ const ProductTabs = () => {
         )}
 
         {activeTab === 'review' && (
-          <div>
-            <h2 className="text-xl font-semibold mb-2">Customer Reviews</h2>
-            <p className="text-gray-600">Based on 1 review <span className="text-gray-500 underline cursor-pointer">Write a review</span></p>
+          <div className='max-w-[1440px] mx-auto font-sofia px-[15px] mt-[24px]'>
+            <h2 className="text-sm mb-[8px]  tracking-[1.2]">Customer Reviews</h2>
+            <p className="text-newstext text-base ">Based on 1 review <span className="text-[#7a7a7a]  cursor-pointer">Write a review</span></p>
           </div>
         )}
       </div>

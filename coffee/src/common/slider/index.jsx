@@ -6,9 +6,12 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import styles from "./style.module.scss";
 import { useState } from "react";
+import { useLocation } from "react-router";
+
 import { useEffect } from "react";
 const MySlider = ({ slide = [], slidesData = [], isIntro = false }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const location = useLocation();
 
   useEffect(() => {
     const handleResize = () => {
@@ -18,7 +21,8 @@ const MySlider = ({ slide = [], slidesData = [], isIntro = false }) => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  
+  const isProductsPage = location.pathname.startsWith("/products");
+
   return (
     <div className={`${styles.mySwiper} ${isIntro ? styles.introSlider : ""}`}>
       <Swiper
@@ -56,8 +60,8 @@ const MySlider = ({ slide = [], slidesData = [], isIntro = false }) => {
 
         breakpoints: {
           1492: {
-            slidesPerView: 3,
-            slidesPerGroup: 2, 
+            slidesPerView: windowWidth > 1492 && isProductsPage ? 4 : 3, 
+            slidesPerGroup: windowWidth > 1492 && isProductsPage ? 3 : 2, 
             spaceBetween: 0,
             autoplay: {
               delay: 3000,

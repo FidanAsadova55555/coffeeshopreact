@@ -7,6 +7,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router';
 import { useTranslation } from "react-i18next";
 import { useCookies } from "react-cookie";
+import CartDrawer from '@/components/checkout';
 const Header = () => {
   const { t, i18n } = useTranslation();
   const [cookies, setCookie] = useCookies(["lang"]);
@@ -22,7 +23,14 @@ const Header = () => {
   useEffect(() => {
     i18n.changeLanguage(lang);
   }, [lang, i18n]);
+  const [isDrawerOpen, setDrawerOpen] = useState(false);  // Drawer state
+
+  const toggleDrawer = () => {
+    console.log("Toggling drawer", !isDrawerOpen); // Add a log to track the toggle action
+    setDrawerOpen((prev) => !prev);
+  };
   
+
     const menuItems = [
         { name: "home", path: "/" },
         { name: "shop", path: "/products" },
@@ -62,6 +70,7 @@ const Header = () => {
     
         const location = useLocation();
       const isHomePage = location.pathname === "/";
+
   return (
     <>
 <header
@@ -166,7 +175,7 @@ const Header = () => {
       </li>
       </>
       )}
-      <li>
+      <li onClick={toggleDrawer}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 297.78668 398.66666"
@@ -181,7 +190,9 @@ const Header = () => {
             </g>
           </g>
         </svg>
+        
       </li>
+
     </ul>
  
  
@@ -292,6 +303,8 @@ ${isMenuOpen ? "translate-x-0" : "-translate-x-full"} transition-transform durat
 
 
 </header>
+<CartDrawer isOpen={isDrawerOpen} closeDrawer={toggleDrawer} />
+
     </>
   )
 }

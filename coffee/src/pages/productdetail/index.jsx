@@ -1,6 +1,6 @@
 import React from 'react'
+import MySlider from '@/common/slider'
 
-import Comment from '@/common/comment'
 import { QueryKeys } from "@/constants/query";
 import { Link } from 'react-router';
 import Loading from '@/shared/loading';
@@ -9,14 +9,17 @@ import { useParams } from 'react-router'
 import { getAPIData } from '@/http/api';
 import { useQuery } from '@tanstack/react-query'
 import ProductCard from '@/common/product'
-import ProductTabs from '../../common/review';
+import ProductTabs from '@/common/review';
+import ProductWithCart from '@/components/addtocart';
 const ProductDetail = () => {
   const { id } = useParams(); 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.SHOPCARDS],
-    queryFn: async () => await getAPIData("shopcards?populate=*"),
-  });
+    queryFn: async () => 
+      await getAPIData("shopcards?populate[colors][populate][image]=true&populate[image]=true"),
 
+  });
+console.log(data,"hiii")
    if (isLoading) return <div>
  <div className='flex justify-center items-center'>
  <div className='w-[500px] h-[500px] overflow-hidden'>
@@ -41,41 +44,34 @@ const ProductDetail = () => {
   }
   return (
     <>
-    <div className=''>
-        <ProductCard
-        image={shop.image?.url ? `http://localhost:1337${shop.image.url}` : "https://via.placeholder.com/300"}
-        title={shop.title}
-        old={shop.old}
-        newprice={shop.newprice}
-        colors={shop.colors}
+    <div>
+        <ProductWithCart/>
+       
 
-        />
-        <Comment/>
-
-     <div className='mx-[-15px] mt-[25px]'>
-      <h5 className='text-[25px] text-[#333] font-sofia capitalize text-center'>
-related post
-      </h5>
-        <div className="grid grid-cols-1 small:grid-cols-2  medium:grid-cols-3 ">
-        {data && data?.data?.slice(0, 3).map((el, index) => (
-  <Link to={`/products/${el.id}`} key={index}>
-    <ProductCard
-              image={shop.image?.url ? `http://localhost:1337${shop.image.url}` : "https://via.placeholder.com/300"}
-              title={shop.title}
-              old={shop.old}
-              newprice={shop.newprice}
-              colors={shop.colors}
-            />
-  </Link>
-))}
-
-    </div>
-     </div>
+    
      <div>
       <ProductTabs/>
      </div>
+     <div className=' mt-[25px] pb-[20px] max-w-1410px mx-auto'>
+      <h5 className=' pb-[63px] text-[36px]  text-[#333] font-sofia capitalize text-center'>
+related post
+      </h5>
+           <MySlider  
+                        slidesData={data && data?.data?.slice(0, 5).map((el) => (
+  <Link to={`/products/${el.id}`} key={`${el.id}-${el.title}`}>
+<ProductCard
+  image={el.image?.url ? `http://localhost:1337${el.image.url}` : "https://via.placeholder.com/300"}
+  title={el.title}
+  old={el.old}
+  newprice={el.newprice}
+  colors={el.colors}
+/>
 
+  </Link>
+))}
+/>
     </div>
+     </div>
     
     </>
   )

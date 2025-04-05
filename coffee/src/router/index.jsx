@@ -1,5 +1,5 @@
 import { createBrowserRouter, //Navigate 
-} from "react-router-dom";
+} from "react-router";
 
 import Products from "@/pages/shop";
 import Blog from "@/pages/blog";

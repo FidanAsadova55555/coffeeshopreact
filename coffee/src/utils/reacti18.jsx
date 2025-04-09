@@ -63,15 +63,26 @@ paymentList: [
   "Europe & USA within 2-4 days",
   "Rest of the world within 3-7 days",
   "Selected locations"
-]
-,expressDelivery: "Express Delivery",
+],
+whyChooseUs: "Why choose us",
+relatedProducts: "Related products",
+
+whyChooseUsText:
+  "Official Herschel stockist. Australian warranty assistance & support. Australian shipping & returns. Customer-first experience. Environmentally focused.",
+return: "Return",
+returnText:
+  "Return this product within 100 days if you change your mind. Get a refund/replacement & free return shipping if it arrives damaged or not as described.",
+shipping: "Shipping",
+shippingText:
+  "Free if stated near price. $9.95 Australia wide (up to 10 items). $18.95 for Express Post (generally 1 business day).",
+expressDelivery: "Express Delivery",
 needMoreInfo: "Need more information",
 helpLinks: [
   "Orders & Shipping",
   "Returns & Refunds",
   "Payments",
   "Your Orders"
-]
+],
 
 
     }
@@ -91,7 +102,18 @@ helpLinks: [
         "Доставка в другие страны в течение 3–7 дней",
         "Только в определённые регионы"
       ]
-,      
+
+,       whyChooseUs: "Почему выбирают нас",
+relatedProducts: "Связанные товары",
+
+whyChooseUsText:
+  "Официальный дистрибьютор Herschel. Поддержка и гарантия в Австралии. Доставка и возврат по Австралии. Клиентоориентированность. Забота об экологии.",
+return: "Возврат",
+returnText:
+  "Вы можете вернуть этот товар в течение 100 дней, если передумаете. Бесплатная обратная доставка и возврат средств/обмен в случае повреждения или несоответствия описанию.",
+shipping: "Доставка",
+shippingText:
+  "Бесплатно, если указано рядом с ценой. $9.95 по всей Австралии (до 10 товаров). $18.95 за экспресс-доставку (обычно 1 рабочий день).",
       paymentList: [
         "Безопасные платежи",
         "Принимаем банковские карты",

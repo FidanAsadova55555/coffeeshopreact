@@ -43,5 +43,14 @@
     @apply text-base text-old py-[4px] font-sofia;
   }
 }
+@layer utilities {
 
+.boxtitle{
+  @apply text-[18px] font-sofia relative pb-[18px] mb-[22px] after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:-translate-x-1/2 after:w-[42px] after:h-px after:border-b after:border-black;
+}}
+@layer utilities {
+  .contextbox {
+    @apply mb-[30px] border border-[#eaeaea] p-[25px_15px]  transition-[border] duration-[250ms] ease-linear delay-[250ms]  text-center hover:border-black;
+  }
+}
 @import "remixicon/fonts/remixicon.css";

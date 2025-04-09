@@ -1,6 +1,5 @@
 import React from 'react'
 import MySlider from '@/common/slider'
-
 import { QueryKeys } from "@/constants/query";
 import { Link } from 'react-router';
 import Loading from '@/shared/loading';
@@ -11,18 +10,22 @@ import { useQuery } from '@tanstack/react-query'
 import ProductCard from '@/common/product'
 import ProductTabs from '@/common/review';
 import ProductWithCart from '@/components/addtocart';
-const ProductDetail = () => {
-  const { id } = useParams(); 
-   const { data: maybe } = useQuery({
-      queryKey: [QueryKeys.COLORS],
-      queryFn: async () => await getAPIData("colors"),
-    });  console.log(maybe, "colorsss");
-  
-  const { data, isLoading, isError, error } = useQuery({
-    queryKey: [QueryKeys.SHOPCARDS],
-    queryFn: () => getAPIData("shopcards?populate[colors][populate]=image&populate=image")
+import { useTranslation } from "react-i18next";
 
-  });
+const ProductDetail = () => {
+  const { t } = useTranslation();
+  const { id } = useParams(); 
+  const { data: maybe } = useQuery({
+    queryKey: [QueryKeys.COLORS],
+    queryFn: async () => await getAPIData("colors"),
+  });  console.log(maybe, "colorsss");
+
+const { data, isLoading, isError, error } = useQuery({
+  queryKey: [QueryKeys.SHOPCARDS],
+  queryFn: () => getAPIData("shopcards?populate[colors][populate]=image&populate=image")
+
+});
+
 console.log(data,"hiii")
    if (isLoading) return <div>
  <div className='flex justify-center items-center'>
@@ -64,8 +67,7 @@ console.log(data,"hiii")
      </div>
      <div className=' mt-[25px] pb-[20px] max-w-1410px mx-auto'>
       <h5 className=' pb-[63px] text-[36px]  text-[#333] font-sofia capitalize text-center'>
-related post
-      </h5>
+      {t("relatedProducts")}      </h5>
            <MySlider  
                         slidesData={data && data?.data?.slice(0, 5).map((el) =>{ 
                           console.log(el,"dataaa")

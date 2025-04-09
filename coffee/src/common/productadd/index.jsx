@@ -7,8 +7,13 @@ import { QueryKeys } from '@/constants/query';
 import Loading from '@/shared/loading'; 
 import { DataNotFoundContainer } from '@/shared/notfound';
 import styles from "./style.module.scss"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { useTranslation } from 'react-i18next';
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 
 const ProductAdd = ({ image, title, old, newprice }) => {
+  const { t } = useTranslation();
   const { id } = useParams(); 
   const { data, isLoading, isError } = useQuery({
     queryKey: [QueryKeys.SHOPCARDS],
@@ -48,10 +53,16 @@ const ProductAdd = ({ image, title, old, newprice }) => {
 
       <div className="col-span-12 md:col-span-5 lg:col-span-4 px-[15px]">
         {title && (
-          <div>
-            <h3 className="font-sofia pt-[20px] text-[24px] mb-[8px] inline-block capitalize text-black  hover:text-coffee transition-all ease-in-out duration-500">
+          <div className='flex justify-between items-start'>
+            <h3 className="max-w-[400px] font-sofia  text-[24px] mb-[8px] inline-block capitalize text-black  hover:text-coffee transition-all ease-in-out duration-500">
               {title}
             </h3>
+              <button className={styles.tooltipWrapper}>
+                            
+                            <FontAwesomeIcon icon={faHeart} className={styles.icon} />
+                            <span className={styles.tooltip}>Add to Wishlist</span>
+                          
+                          </button>
           </div>
         )}
 
@@ -68,24 +79,24 @@ const ProductAdd = ({ image, title, old, newprice }) => {
           <p className="font-sofia text-sm leading-[28px] text-[#a8a8a8] pt-[22px] border-t border-[#e7e7e7]">
           Calf-length dress in airy, textured cotton fabric with a printed pattern Sed hendrerit. Cras risus ipsum, faucibus ut, ullamcorper id, varius estibulum ante ipsum primis in faucibus Product Details Inspired by traditional blockprinting techniques in India, our own in-house design is the vibrant pattern that every closet needs. That's why...          </p>
           <div className="flex justify-start mt-[22px] items-center w-[306px]">
-            <div className="w-[90px] mr-[15px] h-[52px] border border-newstext  relative">
+            <div className="w-[90px] mr-[15px] h-[52px] border-2 border-newstext  relative">
               <span className="w-[45px] absolute left-0 top-0 py-[10px] text-center text-[20px] text-[#232529] font-semibold border-r border-[#232529] rounded-none">
                 {quantity}
               </span>
 
               <button
-                className="absolute right-0 top-0 h-[50%] w-[42px]"
+                className="absolute  right-0 cursor-pointer transition-all ease-in-out duration-500 hover:text-coffee  top-0 h-[50%] w-[42px]"
                 onClick={() => setQuantity((prev) => prev + 1)}
               >
-                +
-              </button>
+<FontAwesomeIcon icon={faPlus} />
+</button>
 
               <button
-                className="absolute right-0 bottom-0 h-[50%] w-[42px] border-t-[1px] border-black"
+                className="absolute  cursor-pointer transition-all ease-in-out duration-500 hover:text-coffee right-0 bottom-0 h-[50%] w-[42px] border-t-[1px] border-black"
                 onClick={() => setQuantity((prev) => Math.max(prev - 1, 1))}
               >
-                -
-              </button>
+<FontAwesomeIcon icon={faMinus} />
+</button>
             </div>
 
             <button
@@ -101,7 +112,35 @@ const ProductAdd = ({ image, title, old, newprice }) => {
           </button>
         </div>
       </div>
-      <div className="col-span-3">hii</div>
+      <div className="col-span-3 font-sofia px-[15px]">
+<div className="contextbox">
+  <h3 className='boxtitle'>
+  {t('whyChooseUs')}  </h3>
+  <p className='text-old
+   text-sm
+    leading-[28px] 
+'>
+{t('whyChooseUsText')}  </p>
+</div>
+<div className="contextbox">
+  <h3 className='boxtitle'>
+  {t('return')} </h3>
+  <p className='text-old
+   text-sm
+    leading-[28px] 
+'>
+{t('returnText')}  </p>
+</div>
+<div className="contextbox">
+  <h3 className='boxtitle'>
+  {t('shipping')}</h3>
+  <p className='text-old
+   text-sm
+    leading-[28px] 
+'>
+{t('shippingText')} </p>
+</div>
+      </div>
     </div>
   );
 };

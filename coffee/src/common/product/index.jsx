@@ -27,7 +27,8 @@ const onlyImage = image && !title && !old && !newprice && (!colors || colors.len
   console.log("Rendered with image:", image);
 
 return (
-  <div className={` font-sofia px-[15px]  ${!onlyImage ? 'pb-[24px] mb-[30px]' : 'pb-0 mb-0'}`}>
+  <div className={ `${!onlyImage ? 'pb-[24px] mb-[30px]' : 'pb-0 mb-0'}`}>
+  <div className={` font-sofia ${styles.add} px-[15px]  `}>
 <div className={`${styles.relativeplace} ${!isProduct ? styles.blur : ''} relative`}>
 <div className='overflow-hidden  w-full h-auto'>
       <img
@@ -68,7 +69,7 @@ return (
           )}
 
           {colors && Array.isArray(colors) && colors.length > 1 && (
-            <div className={styles.krujochki}>
+            <div className={`${!isProduct ? styles.krujochki : styles.lespetitsronds}`}>
               {colors.map((colorItem, idx) => (
                 
                 <div
@@ -105,6 +106,7 @@ return (
         </div>
 
       </div>)}
+    
     </div>
 
     {!onlyImage && title && (
@@ -114,7 +116,13 @@ return (
         </h3>
       </div>
     )}
+ {!onlyImage && isProduct &&  (
+      <div className={styles.addtocarttext}>
+<button className="text-coffee font-sofia text-xs uppercase relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:h-[1px] after:bg-coffee">
+add to cart
+        </button>
 
+      </div>)}
     {!onlyImage && (
       <div className='pt-[5px] leading-6 flex gap-1 font-semibold justify-center items-center text-[15px]'>
         {old && (
@@ -125,6 +133,8 @@ return (
         )}
       </div>
     )}
+     
+  </div>
   </div>
 );
 };

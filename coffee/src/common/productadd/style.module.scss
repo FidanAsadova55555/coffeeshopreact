@@ -93,15 +93,31 @@ align-items: center;
 }
 .icon{
     color:black;
-transition: all ease-in-out 0.5s;
-font-size: 16px;
+    transition: all ease-in-out 0.3s;
+font-size: 14px;
 }
 
 .tooltipWrapper {
     position: relative;
     display: inline-block;
     cursor: pointer;
-  
+    height: 40px;
+    width: 40px;
+    border: 1px solid #e9e9e9;
+    border-radius: 50%;
+    line-height: 40px;
+    text-align: center;
+    transition: all ease-in-out 0.3s;
+    
+
+
+      &:hover{
+                    background-color: #b8784e;
+                    .icon{
+                        color:white
+                    }
+                    }
+    
     .tooltip {
         z-index: 999; 
         line-height: normal;

@@ -49,7 +49,7 @@ const Identical = ({ reverse = false, products = [], renderIndex = 0 }) => {
             <img
               src={selectedImage}
               alt={`image-${renderIndex}`}
-              className='w-full h-full object-cover'
+              className='w-full h-full object-cover transition-all duration-300 ease-in-out hover:scale-105'
             />
           </div>
         </div>
@@ -62,15 +62,21 @@ const Identical = ({ reverse = false, products = [], renderIndex = 0 }) => {
               {t("ecoLimitedDesc")}
             </h2>
             <MySlider
-              slidesData={products.map((product, idx) => (
+              slidesData={products.map((product, idx) =>{ 
+                console.log(product,"jacobs")
+
+                return(
+
                 <ProductCard
                   key={idx}
                   image={product.image?.url ? `http://localhost:1337${product.image.url}` : "https://via.placeholder.com/300"}
                   title={product.title}
                   old={product.old}
                   newprice={product.newprice}
+                  colors={product.colors}
+
                 />
-              ))}
+              )})}
             />
             <Button />
           </div>

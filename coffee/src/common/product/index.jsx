@@ -23,21 +23,23 @@ const ProductCard = ({image,title,old,newprice,colors}) => {
   };
 const onlyImage = image && !title && !old && !newprice && (!colors || colors.length === 0);
   const location = useLocation();
-      const isProduct = location.pathname === "/products";
-      console.log("Rendered with image:", image);
+  const isProduct = location.pathname.startsWith("/products") && location.pathname !== "/products";
+  console.log("Rendered with image:", image);
 
 return (
   <div className={` font-sofia px-[15px]  ${!onlyImage ? 'pb-[24px] mb-[30px]' : 'pb-0 mb-0'}`}>
-    <div className={`overflow-hidden ${styles.relativeplace} w-full h-auto ${isProduct ? styles.blur : ''}`}>
+<div className={`${styles.relativeplace} ${!isProduct ? styles.blur : ''} relative`}>
+<div className='overflow-hidden  w-full h-auto'>
       <img
         className='w-full h-full object-cover'
         src={mainImage || "https://via.placeholder.com/300"}
         alt={title || "Product"}
       />
+      </div>
 
       {!onlyImage &&  (
         <>
-        {isProduct &&  (
+        {!isProduct &&  (
           <ul className={styles.iconslist}>
             <li>
               <button className={styles.tooltipWrapper}>
@@ -81,8 +83,8 @@ return (
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    console.log("🎯 colorItem:", colorItem);
-                    console.log("✅ Color circle clicked:", colorItem?.image?.url);
+                    console.log("colorItem:", colorItem);
+                    console.log(" Color circle clicked:", colorItem?.image?.url);
                     
 
                     if (colorItem.image?.url) {
@@ -95,7 +97,7 @@ return (
           )}
         </>
       )}
-       {!onlyImage && !isProduct &&  (
+       {!onlyImage && isProduct &&  (
       <div className={styles.up}>
         <div className='w-[50%] flex justify-center items-center'>                <FontAwesomeIcon icon={faHeart} className={styles.icon} />
         </div>

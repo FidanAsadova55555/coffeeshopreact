@@ -49,7 +49,7 @@
             display: flex;
             transition: 0.5s;
             opacity: 0;
-            visibility: hidden;
+            visibility: hidden !important;
             z-index: 1;
         
             li button {
@@ -80,14 +80,14 @@ align-items: center;
       &:hover .iconslist{
         transform: translate(-50%) translateY(0);
         opacity: 1;
-        visibility: visible;
+        visibility: visible !important;
         
     }
     &:hover .krujochki {
         transform: translate(-50%) translateY(0);
         transition-delay: 0.5s;
-        opacity: 1;
-        visibility: visible;
+        opacity: 1 !important;
+        visibility: visible !important;
       }
       
 }
@@ -173,7 +173,7 @@ position: absolute;
     transform: translate(-50%) translateY(15px);
     transition: all .3s linear;
     opacity: 0;
-    visibility: hidden;
+    visibility: hidden !important;
     z-index: 6;
     .circle{
       margin-left: 7px;
@@ -193,8 +193,8 @@ position: absolute;
 &:hover .krujochki {
   transform: translate(-50%) translateY(0);
   transition-delay: 0.5s;
-  opacity: 1;
-  visibility: visible;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 .up{
   display: flex;
@@ -210,7 +210,8 @@ position: absolute;
     bottom: 0;
     width: 100%;
     transform: translateY(100%);
-
+    visibility: hidden;
+    opacity: 0;
 }
 &:hover{
   .up{

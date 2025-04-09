@@ -13,10 +13,14 @@ import ProductTabs from '@/common/review';
 import ProductWithCart from '@/components/addtocart';
 const ProductDetail = () => {
   const { id } = useParams(); 
+   const { data: maybe } = useQuery({
+      queryKey: [QueryKeys.COLORS],
+      queryFn: async () => await getAPIData("colors"),
+    });  console.log(maybe, "colorsss");
+  
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [QueryKeys.SHOPCARDS],
-    queryFn: async () => 
-      await getAPIData("shopcards?populate[colors][populate][image]=true&populate[image]=true"),
+    queryFn: () => getAPIData("shopcards?populate[colors][populate]=image&populate=image")
 
   });
 console.log(data,"hiii")
@@ -44,11 +48,17 @@ console.log(data,"hiii")
   }
   return (
     <>
-    <div>
-        <ProductWithCart/>
+<div
+  className="bg-cover bg-center "
+  style={{
+    backgroundImage: "url(https://monfee-store-demo.myshopify.com/cdn/shop/files/bg-product.jpg?v=1613544856)",
+  }}
+>   
+<div className="pb-[68px]">
+        <ProductWithCart />
        
-
-    
+</div>
+    </div>
      <div>
       <ProductTabs/>
      </div>
@@ -57,21 +67,25 @@ console.log(data,"hiii")
 related post
       </h5>
            <MySlider  
-                        slidesData={data && data?.data?.slice(0, 5).map((el) => (
-  <Link to={`/products/${el.id}`} key={`${el.id}-${el.title}`}>
+                        slidesData={data && data?.data?.slice(0, 5).map((el) =>{ 
+                          console.log(el,"dataaa")
+                          return(
 <ProductCard
   image={el.image?.url ? `http://localhost:1337${el.image.url}` : "https://via.placeholder.com/300"}
-  title={el.title}
-  old={el.old}
+  title={
+    <Link to={`/products/${el.id}`}>
+      {el.title}
+    </Link>
+  }  old={el.old}
   newprice={el.newprice}
   colors={el.colors}
 />
 
-  </Link>
-))}
+)})}
 />
     </div>
-     </div>
+     
+    
     
     </>
   )

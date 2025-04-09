@@ -13,20 +13,25 @@ const Home = () => {
     queryKey: [QueryKeys.INTROPICTURES],
     queryFn: async () => await getAPIData("intropictures?populate=*"),
   });
+  const { data: maybe } = useQuery({
+    queryKey: [QueryKeys.COLORS],
+    queryFn: async () => await getAPIData("colors"),
+  });  console.log(maybe, "colorsss");
 
   const { data: data1 } = useQuery({
     queryKey: [QueryKeys.PRODUCTS],
-    queryFn: () => getAPIData("products?populate=*"),
+    queryFn: () => getAPIData("products?populate[colors][populate]=image&populate=image")
   });
+ 
 
   const { data: data2 } = useQuery({
     queryKey: [QueryKeys.SECONDPRODUCTS],
-    queryFn: () => getAPIData("secondproducts?populate=*"),
+    queryFn: () => getAPIData("secondproducts?populate[colors][populate]=image&populate=image")
   });
 
   const { data: data3 } = useQuery({
     queryKey: [QueryKeys.THIRDPRODUCTS],
-    queryFn: () => getAPIData("thirdproducts?populate=*"),
+    queryFn: () => getAPIData("thirdproducts?populate[colors][populate]=image&populate=image")
   });
 
   const { data: imageData } = useQuery({

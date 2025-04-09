@@ -33,9 +33,9 @@ const ProductAdd = ({ image, title, old, newprice }) => {
     console.log('Adding to cart:', { ...shop, quantity });
     addToCart({ ...shop, quantity });
   };
-
+  // mb-[30px] pb-[24px]
   return (
-    <div className="pb-[24px] grid grid-cols-12 mb-[30px]">
+    <div className=" grid grid-cols-12">
       <div className="col-span-12 md:col-span-7 lg:col-span-5 px-[15px]">
         <div className={`overflow-hidden ${styles.relativeplace} w-full h-auto `}>
           <img

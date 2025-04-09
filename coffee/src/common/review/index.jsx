@@ -76,7 +76,7 @@ const ProductTabs = () => {
 
 </div>
                     </div>
-                    <div className='pt-[80px]  pl-[105px]'>
+                    <div className='pt-[80px] px-[15px]  md:pl-[105px]'>
                     <div className='font-sofiaRegular'>
     <h3 className='mb-[8px] text-[32px]  leading-[45px] capitalize'>
         {t("coffeeGreatness")}

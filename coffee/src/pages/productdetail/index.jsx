@@ -73,6 +73,7 @@ console.log(data,"hiii")
                           console.log(el,"dataaa")
                           return(
 <ProductCard
+
   image={el.image?.url ? `http://localhost:1337${el.image.url}` : "https://via.placeholder.com/300"}
   title={
     <Link to={`/products/${el.id}`}>

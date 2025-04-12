@@ -24,7 +24,7 @@ const ProductAdd = ({ image, title, old, newprice }) => {
   });
 
   const [quantity, setQuantity] = useState(1); 
-  const { addToCart } = useCartStore((state) => state); 
+  const { addToCart ,toggleWishlist } = useCartStore((state) => state); 
   const shopId = parseInt(id, 10);
 
   const shop = data?.data?.find((b) => b.id === shopId);
@@ -37,6 +37,10 @@ const ProductAdd = ({ image, title, old, newprice }) => {
   const handleAddToCart = () => {
     console.log('Adding to cart:', { ...shop, quantity });
     addToCart({ ...shop, quantity });
+  };
+  const handleAddToWish = () => {
+    console.log('Adding to cart:', { ...shop, quantity });
+    toggleWishlist({ ...shop, quantity });
   };
   // mb-[30px] pb-[24px]
   return (
@@ -57,7 +61,8 @@ const ProductAdd = ({ image, title, old, newprice }) => {
             <h3 className="max-w-[400px] font-sofia  text-[24px] mb-[8px] inline-block capitalize text-black  hover:text-coffee transition-all ease-in-out duration-500">
               {title}
             </h3>
-              <button className={styles.tooltipWrapper}>
+              <button               onClick={handleAddToWish}
+ className={styles.tooltipWrapper}>
                             
                             <FontAwesomeIcon icon={faHeart} className={styles.icon} />
                             <span className={styles.tooltip}>Add to Wishlist</span>
@@ -112,7 +117,7 @@ const ProductAdd = ({ image, title, old, newprice }) => {
           </button>
         </div>
       </div>
-      <div className="col-span-3 font-sofia px-[15px]">
+      <div className="col-span-12 md:flex md:justify-between lg:grid items-center lg:col-span-3 font-sofia px-[15px]">
 <div className="contextbox">
   <h3 className='boxtitle'>
   {t('whyChooseUs')}  </h3>

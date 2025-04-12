@@ -7,6 +7,8 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router';
 import { useTranslation } from "react-i18next";
 import { useCookies } from "react-cookie";
+import useCartStore from '@/store/cartStore';
+import WishlistDrawer from '@/components/wishlist/wishlistdrawer';
 import CartDrawer from '@/components/checkout';
 const Header = () => {
   const { t, i18n } = useTranslation();
@@ -20,16 +22,21 @@ const Header = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1200); 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isLoginOpen, setIsLoginOpen] = useState(false); 
+  const cartItems = useCartStore((state) => state.cart);
+const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   useEffect(() => {
     i18n.changeLanguage(lang);
   }, [lang, i18n]);
-  const [isDrawerOpen, setDrawerOpen] = useState(false);  // Drawer state
+  const [isDrawerOpen, setDrawerOpen] = useState(false);  
 
   const toggleDrawer = () => {
-    console.log("Toggling drawer", !isDrawerOpen); // Add a log to track the toggle action
+    console.log("Toggling drawer", !isDrawerOpen); 
     setDrawerOpen((prev) => !prev);
   };
-  
+  const [isWishDrawerOpen, setWishDrawerOpen] = useState(false);
+const toggleWish = () => setWishDrawerOpen((prev) => !prev);
+const wishlistItems = useCartStore((state) => state.wishlist);
+const wishlistCount = wishlistItems.length;
 
     const menuItems = [
         { name: "home", path: "/" },
@@ -148,7 +155,7 @@ const Header = () => {
       </li>
       {!isSmallScreen && (
         <>
-  <li  className='mr-[13px]'>
+  <li   className='mr-[13px]'>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 400 400"
@@ -160,7 +167,7 @@ const Header = () => {
             <path  d="M 399.648,361.789 H 2614.07 c -25.06,261.531 -139.49,503.461 -327.47,689.831 -124.25,123.14 -300.78,193.96 -483.86,193.96 h -591.76 c -183.61,0 -359.601,-70.82 -483.863,-193.96 C 539.148,865.25 424.719,623.32 399.648,361.789 Z M 2730.69,139.461 H 283.035 c -61.558,0 -111.16,49.59 -111.16,111.16 0,363.438 141.68,704 398.32,959.019 165.657,164.55 399.414,258.82 640.785,258.82 h 591.76 c 241.94,0 475.14,-94.27 640.8,-258.82 256.63,-255.019 398.31,-595.581 398.31,-959.019 0,-61.57 -49.59,-111.16 -111.16,-111.16 v 0"></path></g></g>
         </svg>
       </li>
-      <li  className='mr-[13px]'>
+      <li  className='mr-[13px] relative'  onClick={toggleWish}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 400 400"
@@ -172,10 +179,15 @@ const Header = () => {
             <path d="m 903,2424.4 c 157.9,0 306.4,-61.5 418.1,-173.1 l 134.8,-134.9 c 20.7,-20.6 48.1,-32 77.1,-32 29,0 56.4,11.4 77,32 l 133.7,133.7 c 111.7,111.6 259.9,173.1 417.5,173.1 156.91,0 305,-61.3 416.8,-172.5 111.2,-111.3 172.5,-259.5 172.5,-417.5 0.6,-157.3 -60.69,-305.5 -172.5,-417.4 L 1531.5,373.5 487.402,1417.6 c -111.601,111.7 -173.105,259.9 -173.105,417.5 0,158.1 61.199,306.1 172.5,416.8 111.308,111.2 259.101,172.5 416.203,172.5 z m 1829.7,-19.6 c 0,0 0,0 -0.1,0 -152.4,152.4 -355.1,236.3 -570.9,236.3 -215.7,0 -418.7,-84.1 -571.5,-236.9 l -56.9,-57 -58.2,58.2 c -153.1,153.1 -356.3,237.5 -572.1,237.5 -215.305,0 -417.902,-83.9 -570.305,-236.3 -153,-153 -236.8942,-356 -236.2966,-571.5 0,-215 84.4026,-417.8 237.4966,-571 L 1454.7,143.301 c 20.5,-20.403 48.41,-32.199 76.8,-32.199 28.7,0 56.7,11.5 76.7,31.597 L 2731.5,1261.8 c 152.7,152.7 236.8,355.7 236.8,571.4 0.7,216 -83,419 -235.6,571.6"></path>            </g>
           </g>
         </svg>
+        {wishlistCount > 0 && (
+    <span className="absolute -top-4 -right-2  text-sm font-sofia text-coffee w-5 h-5 flex items-center justify-center rounded-full">
+    {wishlistCount}
+  </span>
+)}
       </li>
       </>
       )}
-      <li onClick={toggleDrawer}>
+      <li onClick={toggleDrawer} className="relative">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 297.78668 398.66666"
@@ -190,7 +202,11 @@ const Header = () => {
             </g>
           </g>
         </svg>
-        
+        {totalQuantity > 0 && (
+    <span className="absolute -top-4 -right-2  text-sm font-sofia text-coffee w-5 h-5 flex items-center justify-center rounded-full">
+      {totalQuantity}
+    </span>
+  )}
       </li>
 
     </ul>
@@ -304,6 +320,7 @@ ${isMenuOpen ? "translate-x-0" : "-translate-x-full"} transition-transform durat
 
 </header>
 <CartDrawer isOpen={isDrawerOpen} closeDrawer={toggleDrawer} />
+<WishlistDrawer isOpen={isWishDrawerOpen} closeDrawer={toggleWish} />
 
     </>
   )

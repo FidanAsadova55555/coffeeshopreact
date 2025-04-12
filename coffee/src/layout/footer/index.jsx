@@ -12,7 +12,7 @@ const Footer = () => {
     "aboutUs",
     "privacyPolicy",
     "terms",
-    "return",
+    "returnproducts",
     "wholesale",
   ];
   

@@ -39,6 +39,26 @@ const useCartStore = create(
         });
       },
 
+      comments: {}, 
+      setComment: (productId, userName, email, comment) => {
+        const timestamp = new Date().toISOString();
+        console.log('Timestamp being saved:', timestamp);  
+        
+        set((state) => {
+          const existingComments = state.comments[productId] || [];
+          const newComment = { userName, email, comment, timestamp };
+      
+          return {
+            comments: {
+              ...state.comments,
+              [productId]: [...existingComments, newComment],
+            },
+          };
+        });
+      },
+      
+      clearCommentForm: () => set({ comments: {} }),
+
       wishlist: [],
 
       toggleWishlist: (product) => {

@@ -2,13 +2,13 @@ import React from 'react'
 import { Outlet } from 'react-router';
 import Footer from './footer';
 import Header from './header';
-import DynamicTitle from '../components/dynamic';
+import DynamicTitle from '@/components/dynamic';
 
 const Layout = () => {
     return (
       <div>  
           <DynamicTitle />
-<Header/>
+ <Header/> 
       <main> <Outlet /></main>
         <Footer/>
       </div>

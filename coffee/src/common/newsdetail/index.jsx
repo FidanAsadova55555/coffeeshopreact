@@ -1,6 +1,13 @@
 import React from 'react'
 import styles from "./style.module.scss"
+import useCartStore from '@/store/cartstore'
+import { useParams } from 'react-router'
 const Detail = ({title,image,category,author}) => {
+    const { id } = useParams(); 
+    const blogId = parseInt(id, 10);
+  const comments = useCartStore((state) => state.comments);
+  const commentsCount = Array.isArray(comments[blogId]) ? comments[blogId].length : 0;
+
   return (
         <div className='pt-[64px] pb-[38px] mb-[38px]  border-b  border-border '>
 <h5 className='text-[30px] md:text-[50px] w-[80%] mx-auto  pb-[20px] font-sofiaRegular  text-center capitalize text-inherit'> 
@@ -13,7 +20,10 @@ const Detail = ({title,image,category,author}) => {
 </span>
 
 <span className="text-[12px] uppercase text-title tracking-[0.2em]">
-  <span className='text-black pr-[5px]'>0</span>
+  <span className='text-black pr-[5px]'>
+  {commentsCount}
+
+  </span>
   comments
 </span>
 

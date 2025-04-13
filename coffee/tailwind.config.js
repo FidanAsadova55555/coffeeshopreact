@@ -25,7 +25,8 @@ module.exports = {
         myred:"#ed1f1f",
         title:"#aaa",
         newstext:"#212529",
-        intro:"#e5e5e5"
+        intro:"#e5e5e5",
+        searchold:"#c1c1c1"
       },
        screens: {
         'xs': '320px',

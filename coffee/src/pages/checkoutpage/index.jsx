@@ -28,7 +28,7 @@ const CheckoutPage = () => {
     alert('☕ Thank you! Your order has been placed.');
     navigate('/');
   };
-  const deliveryFee = deliveryType === "delivery" ? 2.0 : 0;
+  const deliveryFee = deliveryType === "delivery" ? totalPrice * 0.02 : 0;
   const totalWithFee = totalPrice + deliveryFee;
   return (
     <div className="min-h-screen bg-[#f8f5f2] px-4 md:px-12 py-10 font-sofia">
@@ -79,7 +79,7 @@ const CheckoutPage = () => {
     </div>
     <div className="flex justify-between font-bold text-lg pt-2">
       <span>Total:</span>
-      <span>${(totalPrice + deliveryFee).toFixed(2)}</span>
+      <span>${(totalWithFee).toFixed(2)}</span>
     </div>
   </div>
 )}

@@ -42,7 +42,7 @@ export const Router = createBrowserRouter([
             },
             {
                 path: "checkout",
-                element: <CheckoutPage/>,
+                element:<ProtectedRoute element={<CheckoutPage />} />,
             },
         ],
     },

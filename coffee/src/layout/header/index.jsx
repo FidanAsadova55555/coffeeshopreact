@@ -10,10 +10,13 @@ import { useCookies } from "react-cookie";
 import useCartStore from '@/store/cartStore';
 import WishlistDrawer from '@/components/wishlist/wishlistdrawer';
 import CartDrawer from '@/components/checkout';
+import SearchDrawer from '@/components/search';
+
 const Header = () => {
   const { t, i18n } = useTranslation();
   const [cookies, setCookie] = useCookies(["lang"]);
   const [lang, setLang] = useState(cookies.lang || "en");
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [MenuOpen, setMenuOpen] = useState(true);
@@ -133,13 +136,13 @@ const wishlistCount = wishlistItems.length;
    
     <ul className="flex justify-end items-center  text-sm">
     {!isSmallScreen && (
-      <li className='mr-[13px]'>
+      <li className='mr-[13px] ' >
       <div className="flex gap-[13px] font-sofia cursor-pointer">
             <span onClick={() => handleLangChange("ru")} className={lang === "ru" ? "font-bold" : ""}>RU</span> | 
             <span onClick={() => handleLangChange("en")} className={lang === "en" ? "font-bold" : ""}>ENG</span>
           </div>
       </li>)}
-      <li className='mr-[13px]'>
+      <li className='mr-[13px] ' onClick={() => setSearchOpen(true)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 400 400"
@@ -155,7 +158,7 @@ const wishlistCount = wishlistItems.length;
       </li>
       {!isSmallScreen && (
         <>
-  <li   className='mr-[13px]'>
+  <li   className='mr-[13px] '>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 400 400"
@@ -321,6 +324,7 @@ ${isMenuOpen ? "translate-x-0" : "-translate-x-full"} transition-transform durat
 </header>
 <CartDrawer isOpen={isDrawerOpen} closeDrawer={toggleDrawer} />
 <WishlistDrawer isOpen={isWishDrawerOpen} closeDrawer={toggleWish} />
+<SearchDrawer isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
 
     </>
   )

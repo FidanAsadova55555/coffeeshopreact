@@ -43,6 +43,17 @@
     @apply text-base text-old py-[4px] font-sofia;
   }
 }
+@layer base {
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    @apply bg-white text-black;
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+    -webkit-text-fill-color: #000 !important;
+    transition: background-color 9999s ease-in-out 0s;
+  }
+}
 @layer utilities {
 
 .boxtitle{

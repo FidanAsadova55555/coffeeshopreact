@@ -27,7 +27,7 @@ const ProductWithCart = () => {
   if (!shop) return <DataNotFoundContainer />;
 
   return (
-    <div className='product-with-cart-container'>
+    <div >
  <ProductAdd
         image={shop.image?.url ? `http://localhost:1337${shop.image.url}` : "https://via.placeholder.com/300"}
         title={shop.title}

@@ -1,8 +1,10 @@
 import React  from 'react';
 import useCartStore from '@/store/cartstore';
 import 'font-awesome/css/font-awesome.min.css';
-
+import { useNavigate } from 'react-router';
 const CartDrawer = ({ isOpen, closeDrawer }) => {
+  const navigate = useNavigate();
+
   const { cart ,removeFromCart } = useCartStore((state) => state);
   const totalPrice = cart.reduce((acc, item) => acc + item.newprice * item.quantity, 0);
   console.log(cart,"images");
@@ -78,6 +80,15 @@ const CartDrawer = ({ isOpen, closeDrawer }) => {
       <div className="flex h-[59px] font-sofia justify-between leading-[59px] text-[18px] px-[40px] items-center ">
         <h3>Total:</h3>
         <span className="text-coffee">${totalPrice.toFixed(2)}</span>
+       
+      </div>
+      <div className='px-[20px]  '>
+      <button
+      className='cursor-pointer uppercase bg-coffee text-white w-full text-center p-3 font-sofia'
+      onClick={() => navigate('/checkout')}
+    >
+      Checkout
+    </button>
       </div>
     </div>
   );

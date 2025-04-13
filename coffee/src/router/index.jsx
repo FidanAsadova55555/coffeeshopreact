@@ -1,6 +1,6 @@
-import { createBrowserRouter, //Navigate 
+import { createBrowserRouter,  
 } from "react-router";
-
+import ProtectedRoute from "../protect";
 import Products from "@/pages/shop";
 import Blog from "@/pages/blog";
 import BlogDetail from "@/pages/BlogDetail";
@@ -8,25 +8,17 @@ import ProductDetail from "@/pages/productdetail";
 import Layout from "@/layout/layout";
 import { DataNotFoundContainer } from "@/shared/notfound";
 import Home from "@/pages/home";
+import Sidebar from "@/layout/adminLayout";
+import Login from "../login";
+import Register from "../register";
+import CheckoutPage from "@/pages/checkoutpage";
 
-// const ProtectedRoute = ({ element }) => {
-//     const { user, loading } = useAuth();
-
-//     console.log("🔍 Checking Auth State: ", { user, loading });
-
-//     if (loading) return <div>Loading...</div>;
-//     return user ? element : <Navigate to="/login" replace />;
-// };
 
 export const Router = createBrowserRouter([
-    // {
-    //     path: "/",
-    //     element: <Navigate to="/login" replace />, 
-    // },
+    
     {
         path: "/",
          element:<Layout/>,
-         // <ProtectedRoute element={<Layout />} />, 
         children: [
             {
                 path: "/",
@@ -48,23 +40,35 @@ export const Router = createBrowserRouter([
                 path: "news/:id",
                 element: <BlogDetail />,
             },
+            {
+                path: "checkout",
+                element: <CheckoutPage/>,
+            },
         ],
     },
-    // {
-    //     path: "/login",
-    //     element: <AdminLogin />,
-    // },
-    // {
-    //     path: "/register",
-    //     element: <RegisterPage />,
-    // },
+    {
+        path: "/login",
+        element: <Login/>,
+    },
+    {
+        path: "/register",
+        element: <Register />,
+    },
+    {
+        path: "/admin",
+        element:<ProtectedRoute element={<Sidebar />} />,
+        children: [
+          {
+            path: "/admin",
+            element: <div>Admin</div>,
+          },
+        ],
+      },
     {
         path: "*",
         element: (
             <div className="w-full h-full flex items-center justify-center">
-                {/* <ErrorBoundary> */}
                     <DataNotFoundContainer />
-                {/* </ErrorBoundary> */}
             </div>
         ),
     },
